@@ -41,3 +41,6 @@ jspm_packages
 
 # Vue JS generated files
 dist/
+
+# IDE
+.idea
