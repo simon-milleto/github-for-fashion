@@ -1,15 +1,16 @@
 {
-    "garments": [{
-        "id": 1,
-        "reference": "289E02220",
-        "status": "created",
-        "title": "Slip léopard zero waste",
-        "creator": "Simon Milleto",
-        "creation_date": "2017-01-12T18:25:43.511Z",
-        "type": "Slip",
-        "licence": "CC",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "images": [{
+  "garments": [
+    {
+      "id": 1,
+      "reference": "289E02220",
+      "status": "created",
+      "title": "Slip léopard zero waste",
+      "creator": "Simon Milleto",
+      "creation_date": "2017-01-12T18:25:43.511Z",
+      "type": "Slip",
+      "licence": "CC",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "images": [{
               "url": "http://cdn.tutorialzine.com/wp-content/uploads/2016/03/css-variables.jpg",
               "alt": "beautiful picture"
             },
@@ -22,102 +23,118 @@
               "alt": "bad picture"
             }
         ],
-        "infos": [{
-                "label": "Category",
-                "value": "Homme"
-            },
-            {
-                "label": "Sizes",
-                "value": ["S", "M", "L", "XL"]
-            },
-            {
-                "label": "Favourites",
-                "value": 2400
-            }
-        ],
-        "commit": {
-            "proposals": [{
-                    "author": "Author name 1"
-                },
-                {
-                    "author": "Author name 2"
-                }
-            ],
-            "changes": 102,
-            "contributors": 18
+      "infos": [
+        {
+          "label": "Category",
+          "value": "Homme"
         },
-        "files": [{
-                "filetype": "ai",
-                "available": true,
-                "url": ""
-            },
-            {
-                "filetype": "dxf",
-                "available": false,
-                "url": ""
-            },
-            {
-                "filetype": "pdf",
-                "available": true,
-                "url": ""
-            }
-        ]
+        {
+          "label": "Sizes",
+          "value": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "label": "Favourites",
+          "value": 2400
+        }
+      ],
+      "commit": {
+        "proposals": [
+          {
+            "author": "Author name 1"
+          },
+          {
+            "author": "Author name 2"
+          }
+        ],
+        "changes": 102,
+        "contributors": 18
+      },
+      "files": [
+        {
+          "filetype": "ai",
+          "available": true,
+          "url": ""
+        },
+        {
+          "filetype": "dxf",
+          "available": false,
+          "url": ""
+        },
+        {
+          "filetype": "pdf",
+          "available": true,
+          "url": ""
+        }
+      ]
     },
     {
-        "id": 2,
-        "reference": "289E02550",
-        "status": "created",
-        "title": "Blouson Firefox",
-        "creator": "DavidB",
-        "creation_date": "2017-02-24T18:25:43.511Z",
-        "type": "Blouson",
-        "licence": "CC",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "images": [{
+      "id": 2,
+      "reference": "289E02550",
+      "status": "created",
+      "title": "Blouson Firefox",
+      "creator": "DavidB",
+      "creation_date": "2017-02-24T18:25:43.511Z",
+      "type": "Blouson",
+      "licence": "CC",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "images": [{
                 "url": "http://pukkaind.biz/images/categories/16Wool%20varsity%20Letterman%20jacket%20Royal-white.jpg",
                 "alt": ""
             }
         ],
-        "infos": [{
-                "label": "Category",
-                "value": "Homme Geek"
-            },
-            {
-                "label": "Sizes",
-                "value": ["S", "M", "L", "XL"]
-            },
-            {
-                "label": "Favourites",
-                "value": 240000
-            }
-        ],
-        "commit": {
-            "proposals": [{
-                    "author": "Author name 1"
-                },
-                {
-                    "author": "Author name 2"
-                }
-            ],
-            "changes": 152,
-            "contributors": 24
+      "infos": [
+        {
+          "label": "Category",
+          "value": "Homme Geek"
         },
-        "files": [{
-                "filetype": "ai",
-                "available": false,
-                "url": ""
-            },
-            {
-                "filetype": "dxf",
-                "available": true,
-                "url": ""
-            },
-            {
-                "filetype": "pdf",
-                "available": true,
-                "url": ""
-            }
-        ]
+        {
+          "label": "Sizes",
+          "value": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "label": "Favourites",
+          "value": 240000
+        }
+      ],
+      "commit": {
+        "proposals": [
+          {
+            "author": "Author name 1"
+          },
+          {
+            "author": "Author name 2"
+          }
+        ],
+        "changes": 152,
+        "contributors": 24
+      },
+      "files": [
+        {
+          "filetype": "ai",
+          "available": false,
+          "url": ""
+        },
+        {
+          "filetype": "dxf",
+          "available": true,
+          "url": ""
+        },
+        {
+          "filetype": "pdf",
+          "available": true,
+          "url": ""
+        }
+      ]
     },
     {
         "id": 3,
@@ -146,33 +163,118 @@
                 "label": "Favourites",
                 "value": 240
             }
-        ],
-        "commit": {
-            "proposals": [{
-                    "author": "Author name 1"
-                },
-                {
-                    "author": "Author name 2"
-                }
-            ],
-            "changes": 251,
-            "contributors": 12
-        },
-        "files": [{
-                "filetype": "ai",
-                "available": true,
-                "url": ""
-            },
-            {
-                "filetype": "dxf",
-                "available": true,
-                "url": ""
-            },
-            {
-                "filetype": "pdf",
-                "available": true,
-                "url": ""
+      "id": 3,
+      "reference": "254F02550",
+      "status": "created",
+      "title": "Veste de prison",
+      "creator": "Laguigue",
+      "creation_date": "2017-02-24T18:25:43.511Z",
+      "type": "Veste",
+      "licence": "CC",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "images": [{
+                "url": "http://pukkaind.biz/images/categories/16Wool%20varsity%20Letterman%20jacket%20Royal-white.jpg",
+                "alt": ""
             }
-        ]
-    }]
+        ],
+      "infos": [
+        {
+          "label": "Category",
+          "value": "Veste"
+        },
+        {
+          "label": "Sizes",
+          "value": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "label": "Favourites",
+          "value": 240
+        }
+      ],
+      "commit": {
+        "proposals": [
+          {
+            "author": "Author name 1"
+          },
+          {
+            "author": "Author name 2"
+          }
+        ],
+        "changes": 251,
+        "contributors": 12
+      },
+      "files": [
+        {
+          "filetype": "ai",
+          "available": true,
+          "url": ""
+        },
+        {
+          "filetype": "dxf",
+          "available": true,
+          "url": ""
+        },
+        {
+          "filetype": "pdf",
+          "available": true,
+          "url": ""
+        }
+      ]
+    },
+    {
+      "title": "dfe",
+      "category": "MILF",
+      "sizes": [
+        "M",
+        "S",
+        "XL"
+      ],
+      "description": "sefez",
+      "type": "",
+      "id": 4
+    },
+    {
+      "title": "C",
+      "category": "",
+      "sizes": [],
+      "description": "",
+      "type": "",
+      "id": 5
+    },
+    {
+      "title": "Manteau Coadebez",
+      "category": "MILF",
+      "sizes": [
+        "XS"
+      ],
+      "description": "Chaud",
+      "type": "Pants",
+      "id": 6
+    },
+    {
+      "title": "Blouson",
+      "category": "Mature",
+      "sizes": [
+        "XS"
+      ],
+      "description": "100% coton",
+      "type": "Sweat",
+      "id": 7
+    },
+    {
+      "title": "Tits",
+      "category": "MILF",
+      "sizes": [
+        "S"
+      ],
+      "description": "silicone",
+      "type": "Sweat",
+      "id": 8
+    }
+  ]
 }
