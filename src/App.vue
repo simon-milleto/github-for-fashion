@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
     <g-header></g-header>
     <router-view></router-view>
     <g-footer></g-footer>
