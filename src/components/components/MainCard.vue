@@ -24,12 +24,12 @@
 export default {
   name: 'main-card',
   props: ['data'],
-  data () {
+  data() {
     return {
-      title: 'Our crush'
-    }
-  }
-}
+      title: 'Our crush',
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

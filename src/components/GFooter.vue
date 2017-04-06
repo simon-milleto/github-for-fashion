@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: 'g-footer'
-}
+  name: 'g-footer',
+};
 </script>
 
 <style>

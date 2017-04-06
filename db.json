@@ -1,0 +1,53 @@
+{
+    "garment": [{
+        "id": 1,
+        "reference": "289E02220",
+        "status": "created",
+        "title": "Garment project 1",
+        "creator": "Creator name",
+        "creation_date": "2017-01-12T18:25:43.511Z",
+        "type": "Shirt",
+        "licence": "CC",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "infos": [{
+                "label": "Category",
+                "value": "Kids"
+            },
+            {
+                "label": "Sizes",
+                "value": ["S", "M", "L", "XL"]
+            },
+            {
+                "label": "Favourites",
+                "value": 2400
+            }
+        ],
+        "commit": {
+            "proposals": [{
+                    "author": "Author name 1"
+                },
+                {
+                    "author": "Author name 2"
+                }
+            ],
+            "changes": 102,
+            "contributors": 18
+        },
+        "files": [{
+                "filetype": "ai",
+                "available": true,
+                "url": ""
+            },
+            {
+                "filetype": "dxf",
+                "available": false,
+                "url": ""
+            },
+            {
+                "filetype": "pdf",
+                "available": true,
+                "url": ""
+            }
+        ]
+    }]
+}
