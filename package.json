@@ -13,8 +13,8 @@
     "dev-server": "json-server --watch db.json"
   },
   "eslintConfig": {
-    "globals": {
-      "window": true
+    "env": {
+      "browser": true
     }
   },
   "dependencies": {
