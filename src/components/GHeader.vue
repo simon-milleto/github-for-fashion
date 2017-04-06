@@ -1,15 +1,15 @@
 <template>
-  <header>
-    <nav>
-      <h1>Header</h1>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <h1>Header</h1>
+        </nav>
+    </header>
 </template>
 
 <script>
-export default {
-  name: 'g-header'
-}
+    export default {
+        name: 'g-header'
+    }
 </script>
 
 <style>
