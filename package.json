@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "author": "ECV Digital Bordeaux 16/17",
   "scripts": {
-    "dev": "webpack-dev-server --open --inline --hot"
+    "dev": "webpack-dev-server --open --inline --hot",
+    "dev-server": "json-server --watch db.json"
   },
   "dependencies": {
     "sass-loader": "^6.0.2",
@@ -22,6 +23,7 @@
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "node-sass": "^4.5.0",
+    "json-server": "^0.9.6",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^2.1.0-beta.25",
