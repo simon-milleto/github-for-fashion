@@ -3,7 +3,7 @@
         <h2 class="garment-detail__title">{{name}}</h2>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-                <div style="background: red; height: 150px"></div>
+                <slideshow></slideshow>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8">
                 <div class="garment-detail__info-box">
@@ -24,12 +24,16 @@
 </template>
 
 <script>
+    import Slideshow from '../components/Slideshow.vue'
     export default {
         name: 'garment-detail',
         data() {
             return {
                 name: 'Garment project title'
             }
+        },
+        components: {
+            Slideshow,
         }
     }
 </script>
