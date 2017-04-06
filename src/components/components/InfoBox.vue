@@ -6,23 +6,23 @@
 </template>
 
 <script>
-    export default {
-        name: 'info-box',
-        props: ['value', 'label'],
-        data() {
-            return {
-                transformedValue: ''
-            }
-        },
-        methods: {
-            updateValue: function() {
-                this.transformedValue = this.value.constructor === Array ? this.value.join(' ') : this.value;
-            }
-        },
-        mounted() {
-            this.updateValue();
-        }
-    }
+export default {
+  name: 'info-box',
+  props: ['value', 'label'],
+  data() {
+    return {
+      transformedValue: '',
+    };
+  },
+  methods: {
+    updateValue: () => {
+      this.transformedValue = this.value.constructor === Array ? this.value.join(' ') : this.value;
+    },
+  },
+  mounted() {
+    this.updateValue();
+  },
+};
 </script>
 
 <style>
