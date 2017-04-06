@@ -12,6 +12,11 @@
     "precommit": "npm run lint",
     "dev-server": "json-server --watch db.json"
   },
+  "eslintConfig": {
+    "globals": {
+      "window": true
+    }
+  },
   "dependencies": {
     "axios": "^0.16.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",

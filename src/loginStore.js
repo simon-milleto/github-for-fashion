@@ -1,20 +1,20 @@
 class LoginStore {
 
-  constructor(token, name){
+  constructor(token, name) {
     this.state = {
       token,
       name,
-    }
-  };
+    };
+  }
 
-  setLogin(token, name){
+  setLogin(token, name) {
     this.token = token;
     this.name = name;
     localStorage.setItem('token', token);
     localStorage.setItem('name', name);
   }
 
-  clearLogin(){
+  clearLogin() {
     localStorage.clear();
   }
 }

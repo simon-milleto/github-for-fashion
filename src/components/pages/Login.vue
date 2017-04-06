@@ -17,12 +17,12 @@
     data() {
       return {
         token: '',
-      }
+      };
     },
     methods: {
-      verifyUser(){
+      verifyUser() {
         sessionStore.setLogin(this.token, 'Clem');
-      }
+      },
     },
-  }
+  };
 </script>
