@@ -1,11 +1,11 @@
 <template>
   <div id="slideshow">
     <ul>
-      <li v-for="(p, i) in pictures">
-        <img v-bind:src="p.url" v-bind:alt="p.alt" @click="setCurrent(i)" v-bind:class="i === currentPictureIndex ? 'active' : ''">
+      <li v-for="(img, i) in images">
+        <img :src="img.url" :alt="img.alt" @click="setCurrent(i)" :class="i === currentPictureIndex ? 'active' : ''">
       </li>
     </ul>
-    <img v-bind:src="pictures[currentPictureIndex].url" v-bind:alt="pictures[currentPictureIndex].alt" id="show">
+    <img :src="images[currentPictureIndex].url" :alt="images[currentPictureIndex].alt" id="show">
   </div>
 </template>
 
@@ -14,21 +14,10 @@
     name: 'Slideshow',
     data() {
       return {
-        pictures: [{
-          url: 'http://cdn.tutorialzine.com/wp-content/uploads/2016/03/css-variables.jpg',
-          alt: 'beautiful picture',
-        },
-        {
-          url: 'http://cdn.tutorialzine.com/wp-content/uploads/2016/02/great-looking-pricing-tables-150x150.jpg',
-          alt: 'great picture',
-        },
-        {
-          url: 'http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron.png',
-          alt: 'bad picture',
-        }],
         currentPictureIndex: 0,
       };
     },
+    props: ['images'],
     methods: {
       setCurrent(x) {
         this.currentPictureIndex = x;
