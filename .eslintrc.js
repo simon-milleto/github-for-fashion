@@ -1,7 +1,7 @@
 module.exports = {
     "extends": "airbnb",
     "installedESLint": true,
-    "plugins": ["eslint-plugin-script-tags"],
+    "plugins": ["vue"],
     "rules": {
       "linebreak-style": 0,
       "eol-last": 0,
