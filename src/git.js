@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var remoteRepo = gh.getRepo('fcoadebez', 'testRepoName');
 
     remoteRepo.getDetails( function(err, repo) {
-        // console.log(repo);
+        console.log(repo);
     });
 
     remoteRepo.getContents('master', '', false, function(err, contents) {
@@ -35,9 +35,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 remoteRepo.getContents('master', content.name, false, function(err, content) {
                     getImageComposant(content, img);
                 });
-            });
-
-            
+            });            
         });
      });
 
