@@ -87,16 +87,16 @@
       CommitInfo,
       Loader,
     },
-    beforeCreate() {
-      const id = this.$route.params.id;
+    // beforeCreate() {
+    //   const id = this.$route.params.id;
 
-      axios.get(`http://localhost:3000/garments/${id}`)
-        .then((response) => {
-          this.garment = response.data;
-          this.dataIsLoaded = true;
-        })
-        .catch(error => console.error(error));
-    },
+    //   axios.get(`http://localhost:3000/garments/${id}`)
+    //     .then((response) => {
+    //       this.garment = response.data;
+    //       this.dataIsLoaded = true;
+    //     })
+    //     .catch(error => console.error(error));
+    // },
     data() {
       return {
         garment: {},
@@ -109,21 +109,21 @@
     props : 
             ['user', 'repo']
         ,
-        mounted() {
-            var gh = new GitHub({
-               token: 'd8456e252da904dc11c6fd5bcb52f352d561719a'
-            });
+    mounted() {
+        var gh = new GitHub({
+           token: 'e07d25663b3a45d7362c5842dab25f2d74689a93'
+        });
 
-            var remoteRepo = gh.getRepo(this.user, this.repo);
+        var remoteRepo = gh.getRepo(this.user, this.repo);
 
-            remoteRepo.getContents('master', "info.json", true, (err, content) => {
-                // console.log(content);
-                this.garment = content;
+        remoteRepo.getContents('master', "info.json", true, (err, content) => {
+            // console.log(content);
+            this.garment = content;
+            this.dataIsLoaded = true;
+            console.log(this.garment);
 
-                console.log(this.garment);
-
-            });            
-        }
+        });            
+    },
   };
 </script>
 
