@@ -72,24 +72,18 @@
 
   import InfoBox from '../components/InfoBox.vue';
   import DownloadBox from '../components/DownloadBox.vue';
-<<<<<<< HEAD
   import Slideshow from '../components/Slideshow.vue';
-=======
   import CommitInfo from '../components/CommitInfo.vue';
   import Loader from '../components/Loader.vue';
->>>>>>> Adds CommitInfo and Loader components
 
   export default {
     name: 'garment-detail',
     components: {
       InfoBox,
       DownloadBox,
-<<<<<<< HEAD
       Slideshow,
-=======
       CommitInfo,
       Loader,
->>>>>>> Adds CommitInfo and Loader components
     },
     beforeCreate() {
       const id = this.$route.params.id;
@@ -121,7 +115,6 @@
     font-weight: 600;
   }
 
-<<<<<<< HEAD
   .garment-detail__project-info {
     padding: 20px;
     border: 1px solid grey;
@@ -136,12 +129,6 @@
   .garment-detail__download {
     margin: 25px 0;
   }
-=======
-    .garment-detail__description,
-    .garment-detail__download {
-        margin: 25px 0;
-    }
->>>>>>> Adds CommitInfo and Loader components
 
   .garment-detail__description-label,
   .garment-detail__download-label {
