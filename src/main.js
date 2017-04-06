@@ -1,9 +1,8 @@
 import Vue from 'vue';
-
-import * as mdc from 'material-components-web/dist/material-components-web';
-
 import App from './App.vue';
 import router from './router';
+
+import * as mdc from 'material-components-web/dist/material-components-web';
 
 /* eslint-disable no-new */
 new Vue({
