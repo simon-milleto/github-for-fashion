@@ -17,7 +17,7 @@
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
                 <span class="garment-detail__label">Iteration n°</span>
-                <span>{{garment.commit.changes}}</span>
+                <span v-if="garment.commit">{{garment.commit.changes}}</span>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
                 <span class="garment-detail__label">Type</span>
@@ -40,11 +40,11 @@
         </div>
         <div class="garment-detail__project-info mdc-layout-grid">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
-                <span class="garment-detail__commit-value">{{garment.commit.proposals.length}}</span>
+                <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.proposals.length}}</span>
                 <span class="garment-detail__commit-label">Change Proposals</span>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
-                <span class="garment-detail__commit-value">{{garment.commit.changes}}</span>
+                <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.changes}}</span>
                 <span class="garment-detail__commit-label">Changes</span>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
@@ -52,7 +52,7 @@
                 <span class="garment-detail__commit-label">Licence</span>
             </div>
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
-                <span class="garment-detail__commit-value">{{garment.commit.contributors}}</span>
+                <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.contributors}}</span>
                 <span class="garment-detail__commit-label">Contributors</span>
             </div>
         </div>
@@ -87,7 +87,7 @@
         },
         data() {
             return {
-                garment: ''
+                garment: {}
             }
         },
         methods: {
