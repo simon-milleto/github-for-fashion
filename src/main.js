@@ -1,26 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
 
-import Home from './components/pages/Home.vue'
-import GarmentDetail from './components/pages/GarmentDetail.vue'
+import * as mdc from 'material-components-web/dist/material-components-web';
 
-import * as mdc from 'material-components-web/dist/material-components-web'
+import App from './App.vue';
+import router from './router';
 
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-  routes: [
-    { path: '/', component: Home },
-    { path: '/garment/:id', component: GarmentDetail, name:'garment-detail' }
-  ]
-});
-
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },
-  router
+  router,
 });
 
 mdc.autoInit();
