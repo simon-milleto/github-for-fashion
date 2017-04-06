@@ -5,7 +5,7 @@
           <span class="mdc-toolbar__title">Github for Fashion</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-          <router-link :to="{name: 'home'}" class="material-icons">home</router-link>
+          <router-link :to="{name: 'Home'}" class="material-icons">home</router-link>
         </section>
       </div>
     </header>
