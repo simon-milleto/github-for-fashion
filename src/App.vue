@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
-    <g-header></g-header>
-    <router-view></router-view>
-    <g-footer></g-footer>
-  </div>
+    <div id="app">
+        <g-header></g-header>
+        <router-view></router-view>
+        <g-footer></g-footer>
+    </div>
 </template>
 
 <script>

@@ -7,10 +7,10 @@
     "dev": "webpack-dev-server --open --inline --hot"
   },
   "dependencies": {
-    "material-components-web": "^0.5.0",
     "sass-loader": "^6.0.2",
     "vue": "^2.1.0",
-    "vue-router": "^2.2.1"
+    "vue-router": "^2.2.1",
+    "material-components-web": "^0.5.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
