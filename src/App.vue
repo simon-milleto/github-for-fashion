@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <g-header></g-header>
-        <router-view></router-view>
+        <main class="container">
+            <router-view></router-view>
+        </main>
         <g-footer></g-footer>
     </div>
 </template>
@@ -25,7 +27,11 @@ export default {
 </script>
 
 <style>
-    #app{
+    body {
+        margin: 0;
+    }
+
+    #app {
         font-family: 'Roboto', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -34,6 +40,15 @@ export default {
 
     p {
         margin: 0;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .container {
+        margin: 20px;
     }
 
     .separator {
