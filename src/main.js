@@ -9,9 +9,10 @@ import * as mdc from 'material-components-web/dist/material-components-web'
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
-    { path: '/', component: Home },
-    { path: '/garment/:id', component: GarmentDetail }
+    { path: '/', component: Home, name: 'Home' },
+    { path: '/garment/:id', component: GarmentDetail, name: 'Garment Detail' }
   ]
 });
 
