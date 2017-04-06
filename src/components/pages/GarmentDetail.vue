@@ -24,14 +24,14 @@
 </template>
 
 <script>
-    export default {
-        name: 'garment-detail',
-        data() {
-            return {
-                name: 'Garment project title'
-            }
-        }
-    }
+export default {
+  name: 'garment-detail',
+  data() {
+    return {
+      name: 'Garment project title',
+    };
+  },
+};
 </script>
 
 <style>
