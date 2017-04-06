@@ -12,10 +12,9 @@ const router = new VueRouter({
 
   ]
 });
-=======
+
 import App from './App.vue';
 import router from './router';
->>>>>>> 11da4a3f4ac2e9d5b16e67b9208a3418cc044cf5
 
 /* eslint-disable no-new */
 new Vue({
