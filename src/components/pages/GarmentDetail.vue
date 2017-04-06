@@ -1,5 +1,5 @@
 <template>
-    <main class="garment-detail__container">
+    <div class="garment-detail">
         <h2 class="garment-detail__title">{{garment.title}}</h2>
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
@@ -66,7 +66,7 @@
                 <download-box v-for="file in garment.files" :type="file.filetype" :available="file.available" :url="file.url"></download-box>
             </div>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>
@@ -93,6 +93,7 @@ export default {
   methods: {
     fetchData: () => {
       const id = this.$route.params.id;
+      
       axios.get(`http://localhost:3000/garment/${id}`).then((response) => {
         console.log(response.data);
         this.garment = response.data;
