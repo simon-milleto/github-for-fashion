@@ -16,6 +16,7 @@
         return {
           cards: [
             {
+              id: 1,
               title: 'Slip léopard zero waste',
               date: '12/07/16',
               username: 'Simon Milleto',
@@ -24,6 +25,7 @@
               contributers: '12'
             },
             {
+              id: 2,
               title: 'Blouson Firefox',
               date: '12/07/18',
               username: 'DavidB',

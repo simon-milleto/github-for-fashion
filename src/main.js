@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
     { path: '/', component: Home },
-    { path: '/garment/:id', component: GarmentDetail }
+    { path: '/garment/:id', component: GarmentDetail, name:'garment-detail' }
   ]
 });
 
