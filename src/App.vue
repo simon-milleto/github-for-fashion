@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
-    <g-header></g-header>
-    <main class="container">
-      <router-view></router-view>
-    </main>
-    <g-footer></g-footer>
-  </div>
+    <div id="app">
+        <g-header></g-header>
+        <main class="container">
+          <transition name="fade" mode="in-out">
+            <router-view></router-view>
+          </transition>
+        </main>
+        <g-footer></g-footer>
+    </div>
 </template>
 
 <script>
@@ -66,4 +68,20 @@ export default {
     margin: 10px 0;
     background-color: grey;
   }
+
+    /* Transitions */
+
+    .fade-enter-active, .fade-leave-active {
+      transition: all .2s;
+    }
+
+    .fade-enter{
+      opacity: 0;
+      transform: translateY(-50px) translateX(-50px);
+    }
+
+    .fade-leave-active{
+      opacity: 0;
+      transform: translateY(50px) translateX(50px);
+    }
 </style>
