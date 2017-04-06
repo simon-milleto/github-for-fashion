@@ -1,9 +1,11 @@
 <template>
-    <div id="app">
-        <g-header></g-header>
-        <router-view></router-view>
-        <g-footer></g-footer>
-    </div>
+  <div id="app">
+    <g-header></g-header>
+    <main class="container">
+      <router-view></router-view>
+    </main>
+    <g-footer></g-footer>
+  </div>
 </template>
 
 <script>
@@ -25,21 +27,43 @@ export default {
 </script>
 
 <style>
-    #app{
-        font-family: 'Roboto', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-    }
+  html {
+    height: 100%;
+  }
 
-    p {
-        margin: 0;
-    }
+  body {
+    height: 100%;
+    margin: 0;
+  }
 
-    .separator {
-        width: 100%;
-        height: 1px;
-        margin: 10px 0;
-        background-color: grey;
-    }
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: #2c3e50;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .container {
+    flex-grow: 1;
+    margin: 20px;
+  }
+
+  .separator {
+    width: 100%;
+    height: 1px;
+    margin: 10px 0;
+    background-color: grey;
+  }
 </style>

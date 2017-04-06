@@ -1,8 +1,13 @@
 <template>
-    <header>
-        <nav>
-            <h1>Header</h1>
-        </nav>
+    <header class="mdc-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span class="mdc-toolbar__title">Github for Fashion</span>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+          <router-link :to="{name: 'Home'}" class="material-icons">home</router-link>
+        </section>
+      </div>
     </header>
 </template>
 
@@ -13,4 +18,7 @@ export default {
 </script>
 
 <style>
+  .mdc-toolbar {
+    flex-shrink: 0;
+  }
 </style>
