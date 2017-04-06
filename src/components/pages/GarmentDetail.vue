@@ -1,9 +1,17 @@
 <template>
+<<<<<<< HEAD
   <main class="garment-detail__container">
     <h2 class="garment-detail__title">{{garment.title}}</h2>
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
         <slideshow></slideshow>
+=======
+  <div class="garment-detail">
+    <h2 class="garment-detail__title">{{garment.title}}</h2>
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+        <div style="background: red; height: 150px"></div>
+>>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
         <info-box v-for="info in garment.infos" :value="info.value" :label="info.label"></info-box>
@@ -40,6 +48,7 @@
     </div>
     <div class="garment-detail__project-info mdc-layout-grid">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+<<<<<<< HEAD
         <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.proposals.length}}</span>
         <span class="garment-detail__commit-label">Change Proposals</span>
       </div>
@@ -54,6 +63,22 @@
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
         <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.contributors}}</span>
         <span class="garment-detail__commit-label">Contributors</span>
+=======
+          <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.proposals.length}}</span>
+          <span class="garment-detail__commit-label">Change Proposals</span>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.changes}}</span>
+          <span class="garment-detail__commit-label">Changes</span>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <span class="garment-detail__commit-value">{{garment.licence}}</span>
+          <span class="garment-detail__commit-label">Licence</span>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <span class="garment-detail__commit-value" v-if="garment.commit">{{garment.commit.contributors}}</span>
+          <span class="garment-detail__commit-label">Contributors</span>
+>>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
       </div>
     </div>
     <div class="garment-detail__description">
@@ -66,7 +91,11 @@
         <download-box v-for="file in garment.files" :type="file.filetype" :available="file.available" :url="file.url"></download-box>
       </div>
     </div>
+<<<<<<< HEAD
   </main>
+=======
+  </div>
+>>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
 </template>
 
 <script>
@@ -75,13 +104,17 @@
 
   import InfoBox from '../components/InfoBox.vue';
   import DownloadBox from '../components/DownloadBox.vue';
+<<<<<<< HEAD
   import Slideshow from '../components/Slideshow.vue';
+=======
+>>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
 
   export default {
     name: 'garment-detail',
     components: {
       InfoBox,
       DownloadBox,
+<<<<<<< HEAD
       Slideshow,
     },
     mounted() {
@@ -105,6 +138,25 @@
       moment(date) {
         return moment(date).format('L');
       },
+=======
+    },
+    beforeCreate() {
+      const id = this.$route.params.id;
+
+      axios.get(`http://localhost:3000/garments/${id}`)
+        .then((response) => {
+          this.garment = response.data;
+        })
+        .catch(error => console.error(error));
+    },
+    data() {
+      return {
+        garment: {},
+      };
+    },
+    filters: {
+      moment: date => moment(date).format('L'),
+>>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
     },
   };
 </script>
