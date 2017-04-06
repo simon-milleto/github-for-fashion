@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Slideshow from 'garment/Slideshow.vue'
+import Slideshow from './garment/Slideshow.vue'
 export default {
   name: 'home',
   components: {
