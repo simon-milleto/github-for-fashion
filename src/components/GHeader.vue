@@ -21,4 +21,7 @@ export default {
 </script>
 
 <style>
+  .mdc-toolbar {
+    flex-shrink: 0;
+  }
 </style>

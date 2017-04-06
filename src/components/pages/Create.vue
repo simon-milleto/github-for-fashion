@@ -1,6 +1,6 @@
 <template>
     <main class="garment-detail__container">
-        <form>
+        <form v-on:submit.prevent="sendGarment">
             <label for="title">Title</label>
             <input id="title" type="text" name="title" v-model='garment.title'>
             <label for="category">Category</label>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'create',
   data() {
@@ -39,6 +41,15 @@ export default {
         type: '',
       },
     };
+  },
+  methods: {
+    sendGarment() {
+      axios.post('http://localhost:3000/garments/', this.garment)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch(error => console.error(error));
+    },
   },
 };
 </script>

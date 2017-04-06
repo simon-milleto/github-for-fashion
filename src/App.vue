@@ -29,37 +29,46 @@ export default {
 </script>
 
 <style>
-    body {
-        margin: 0;
-    }
+  html {
+    height: 100%;
+  }
 
-    #app {
-        font-family: 'Roboto', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-    }
+  body {
+    height: 100%;
+    margin: 0;
+  }
 
-    p {
-        margin: 0;
-    }
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: #2c3e50;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
+  p {
+    margin: 0;
+  }
 
-    .container {
-        margin: 20px;
-    }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-    .separator {
-        width: 100%;
-        height: 1px;
-        margin: 10px 0;
-        background-color: grey;
-    }
-    
+  .container {
+    flex-grow: 1;
+    margin: 20px;
+  }
+
+  .separator {
+    width: 100%;
+    height: 1px;
+    margin: 10px 0;
+    background-color: grey;
+  }
+
     /* Transitions */
 
     .fade-enter-active, .fade-leave-active {
