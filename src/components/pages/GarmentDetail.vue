@@ -70,42 +70,41 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import moment from 'moment';
+import axios from 'axios';
+import moment from 'moment';
 
-    import InfoBox from '../components/InfoBox.vue';
-    import DownloadBox from '../components/DownloadBox.vue';
+import InfoBox from '../components/InfoBox.vue';
+import DownloadBox from '../components/DownloadBox.vue';
 
-    export default {
-        name: 'garment-detail',
-        components: {
-            InfoBox,
-            DownloadBox
-        },
-        mounted() {
-            this.fetchData();
-        },
-        data() {
-            return {
-                garment: {}
-            }
-        },
-        methods: {
-            fetchData: function() {
-                let id = this.$route.params.id;
-
-                axios.get('http://localhost:3000/garment/' + id).then((response) => {
-                    console.log(response.data);
-                    this.garment = response.data;
-                });
-            }
-        },
-        filters: {
-            moment: function (date) {
-                return moment(date).format('L');
-            }
-        }
-    }
+export default {
+  name: 'garment-detail',
+  components: {
+    InfoBox,
+    DownloadBox,
+  },
+  mounted() {
+    this.fetchData();
+  },
+  data() {
+    return {
+      garment: {},
+    };
+  },
+  methods: {
+    fetchData: () => {
+      const id = this.$route.params.id;
+      axios.get(`http://localhost:3000/garment/${id}`).then((response) => {
+        console.log(response.data);
+        this.garment = response.data;
+      });
+    },
+  },
+  filters: {
+    moment: (date) => {
+      moment(date).format('L');
+    },
+  },
+};
 </script>
 
 <style>
