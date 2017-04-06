@@ -156,5 +156,4 @@
     font-size: 1.2rem;
     font-weight: 600;
   }
->>>>>>> 9b9e499aa08d9af35dc0f812bf4e95193adb76af
 </style>
