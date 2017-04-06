@@ -16,11 +16,7 @@
     },
     methods: {
       updateValue() {
-<<<<<<< HEAD
-        this.transformedValue = this.value.constructor === Array ? this.value.join(' ') : this.value;
-=======
         this.transformedValue = Array.isArray(this.value) ? this.value.join(' ') : this.value;
->>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
       },
     },
     mounted() {

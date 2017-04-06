@@ -8,13 +8,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-
-import Card from '../components/Card.vue';
-import MainCard from '../components/MainCard.vue';
-=======
   import axios from 'axios';
->>>>>>> fa8181ac3f172ca1d45d01a7e4e4ad487f85ef99
 
   import Card from '../components/Card.vue';
   import MainCard from '../components/MainCard.vue';
