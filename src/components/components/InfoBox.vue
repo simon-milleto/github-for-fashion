@@ -12,17 +12,17 @@
     data() {
       return {
         transformedValue: '',
-      }
+      };
     },
     methods: {
-      updateValue: function() {
+      updateValue() {
         this.transformedValue = this.value.constructor === Array ? this.value.join(' ') : this.value;
-      }
+      },
     },
     mounted() {
       this.updateValue();
     },
-  }
+  };
 </script>
 
 <style>

@@ -15,40 +15,43 @@
     data() {
       return {
         pictures: [{
-          "url": "http://cdn.tutorialzine.com/wp-content/uploads/2016/03/css-variables.jpg",
-          "alt": "beautiful picture",
-          "active":true
+          url: 'http://cdn.tutorialzine.com/wp-content/uploads/2016/03/css-variables.jpg',
+          alt: 'beautiful picture',
+          active: true,
         },
         {
-          "url": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/great-looking-pricing-tables-150x150.jpg",
-          "alt": "great picture",
-          "active":false
+          url: 'http://cdn.tutorialzine.com/wp-content/uploads/2016/02/great-looking-pricing-tables-150x150.jpg',
+          alt: 'great picture',
+          active: false,
         },
         {
-          "url": "http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron.png",
-          "alt": "bad picture",
-          "active":false
+          url: 'http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron.png',
+          alt: 'bad picture',
+          active: false,
         }],
-        currentPictureIndex:0
-      }
+        currentPictureIndex: 0,
+      };
     },
     methods: {
-
-      setCurrent(x){
-        this.currentPictureIndex=x;
-        this.pictures.forEach( function(pic){
-          pic['active'] = false;
+      setCurrent(x) {
+        this.currentPictureIndex = x;
+        this.pictures.forEach((pic) => {
+          if (pic.active) {
+            pic.active = false;
+          }
         });
         this.pictures[x].active = true;
-      }
-    }
-  }
+      },
+    },
+  };
 
 </script>
 <style lang="scss" scoped>
   #slideshow{
     #show{
-      width:100%;
+      width:400px;
+      height:400px;
+      object-fit:cover;
     }
     ul{
       margin:0;

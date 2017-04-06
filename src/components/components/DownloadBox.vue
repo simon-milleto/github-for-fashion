@@ -8,8 +8,8 @@
 <script>
   export default {
     name: 'download-box',
-    props: ['type', 'available', 'url']
-  }
+    props: ['type', 'available', 'url'],
+  };
 </script>
 
 <style>
