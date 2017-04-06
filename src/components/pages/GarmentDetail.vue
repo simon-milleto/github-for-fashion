@@ -3,7 +3,7 @@
     <h2 class="garment-detail__title">{{garment.title}}</h2>
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-        <div style="background: red; height: 150px"></div>
+        <slideshow></slideshow>
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
         <info-box v-for="info in garment.infos" :value="info.value" :label="info.label"></info-box>
@@ -75,12 +75,14 @@
 
   import InfoBox from '../components/InfoBox.vue';
   import DownloadBox from '../components/DownloadBox.vue';
+  import Slideshow from '../components/Slideshow.vue';
 
   export default {
     name: 'garment-detail',
     components: {
       InfoBox,
       DownloadBox,
+      Slideshow,
     },
     beforeCreate() {
       const id = this.$route.params.id;
@@ -103,32 +105,32 @@
 </script>
 
 <style>
-    .garment-detail__label {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
+  .garment-detail__label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
 
-    .garment-detail__project-info {
-        padding: 20px;
-        border: 1px solid grey;
-    }
+  .garment-detail__project-info {
+    padding: 20px;
+    border: 1px solid grey;
+  }
 
-    .garment-detail__commit-value {
-        margin-right:5px;
-        font-weight: 600;
-    }
+  .garment-detail__commit-value {
+    margin-right:5px;
+    font-weight: 600;
+  }
 
-    .garment-detail__description,
-    .garment-detail__download {
-        margin: 25px 0;
-    }
+  .garment-detail__description,
+  .garment-detail__download {
+    margin: 25px 0;
+  }
 
-    .garment-detail__description-label,
-    .garment-detail__download-label {
-        margin-bottom: 15px;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
+  .garment-detail__description-label,
+  .garment-detail__download-label {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
 </style>

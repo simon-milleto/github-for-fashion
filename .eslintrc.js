@@ -5,6 +5,7 @@ module.exports = {
     "rules": {
       "linebreak-style": 0,
       "eol-last": 0,
+      "no-param-reassign": 0,
       "no-console": 0,
     },
 };
