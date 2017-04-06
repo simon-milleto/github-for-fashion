@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>github-for-fashion</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="/dist/build.js"></script>
-  </body>
+        <meta charset="utf-8">
+        <meta description="">
+
+        <script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous">
+		  </script>
+
+        <!-- just github-api source (5.3kb) -->
+        <script src="https://unpkg.com/github-api/dist/GitHub.min.js"></script>
+
+        <!-- standalone (20.3kb) -->
+        <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
+        <script src="src/git.js"></script>
+        <style>
+            #drop_zone {
+                border:2px solid grey;
+                min-height:100px;
+            }
+        </style>
+        <title>Test Fashion</title>
+    </head>
+
+    <body>
+
+	    <div id="drop_zone">
+	    	Drop files here
+	    </div>
+	    <span class="readBytesButtons">
+	        <button>entire file</button>
+	    </span>
+	    <div id="byte_range"></div>
+	    <div id="byte_content"></div>
+	    <output id="list"></output>
+
+	    <input type="text" name="user" class="name">
+		<button class="valid">Valider</button>
+		<div class="result">
+        
+      </div>
+	</body>
 </html>
+
