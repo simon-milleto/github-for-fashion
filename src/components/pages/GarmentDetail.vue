@@ -106,14 +106,13 @@
     filters: {
       moment: date => moment(date).format('L'),
     },
-<<<<<<< HEAD
     props: ['user', 'repo'],
     mounted() {
-        const gh = new GitHub({
-          token: 'e07d25663b3a45d7362c5842dab25f2d74689a93'
-        });
+      const gh = new GitHub({
+        token: 'e07d25663b3a45d7362c5842dab25f2d74689a93',
+      });
 
-        const remoteRepo = gh.getRepo(this.user, this.repo);
+      const remoteRepo = gh.getRepo(this.user, this.repo);
 
       remoteRepo.getContents('master', 'info.json', true, (err, content) => {
         // console.log(content);
