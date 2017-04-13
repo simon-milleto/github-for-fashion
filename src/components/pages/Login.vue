@@ -27,17 +27,13 @@
     },
     methods: {
       verifyUser() {
-        
         const gh = new GitHub({
-           token: this.token
+          token: this.token,
         });
-
-        gh.getUser().getProfile().then(user => {
-            sessionStore.setLogin(this.token, user.data.login, user.data.name);
+        gh.getUser().getProfile().then((user) => {
+          sessionStore.setLogin(this.token, user.data.login, user.data.name);
         });
-        
-        
-      }
+      },
     },
   };
 </script>
