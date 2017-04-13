@@ -1,5 +1,5 @@
-"use strict";
 
-export default function api(credentials) {
-	
+
+export default function api() {
+
 }

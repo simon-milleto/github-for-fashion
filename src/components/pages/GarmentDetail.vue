@@ -106,6 +106,7 @@
     filters: {
       moment: date => moment(date).format('L'),
     },
+<<<<<<< HEAD
     props: ['user', 'repo'],
     mounted() {
         const gh = new GitHub({
@@ -114,13 +115,12 @@
 
         const remoteRepo = gh.getRepo(this.user, this.repo);
 
-        remoteRepo.getContents('master', "info.json", true, (err, content) => {
-            // console.log(content);
-            this.garment = content;
-            this.dataIsLoaded = true;
-            console.log(this.garment);
-
-        });            
+      remoteRepo.getContents('master', 'info.json', true, (err, content) => {
+        // console.log(content);
+        this.garment = content;
+        this.dataIsLoaded = true;
+        console.log(this.garment);
+      });
     },
   };
 </script>
