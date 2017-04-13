@@ -72,6 +72,8 @@
 
   import moment from 'moment';
 
+  import EventBus from '../../eventBus';
+
   import InfoBox from '../components/InfoBox.vue';
   import DownloadBox from '../components/DownloadBox.vue';
   import Slideshow from '../components/Slideshow.vue';
@@ -95,13 +97,18 @@
     //       this.garment = response.data;
     //       this.dataIsLoaded = true;
     //     })
-    //     .catch(error => console.error(error));
+    //     .catch(error => this.showError(error.message));
     // },
     data() {
       return {
         garment: {},
         dataIsLoaded: false,
       };
+    },
+    methods: {
+      showError(error) {
+        EventBus.$emit('showError', error);
+      },
     },
     filters: {
       moment: date => moment(date).format('L'),

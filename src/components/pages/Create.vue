@@ -25,6 +25,7 @@
 <script>
 import axios from 'axios';
 
+import EventBus from '../../eventBus';
 export default {
   name: 'create',
   data() {
@@ -48,7 +49,10 @@ export default {
         .then((response) => {
           console.log(response.data);
         })
-        .catch(error => console.error(error));
+        .catch(error => this.showError(error.message));
+    },
+    showError(error) {
+      EventBus.$emit('showError', error);
     },
   },
 };

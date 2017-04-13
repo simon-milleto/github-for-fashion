@@ -1,18 +1,20 @@
 <template>
-    <div id="app">
-        <g-header></g-header>
-        <main class="container">
-          <transition name="fade" mode="in-out">
-            <router-view></router-view>
-          </transition>
-        </main>
-        <g-footer></g-footer>
-    </div>
+  <div id="app">
+    <g-header></g-header>
+    <main class="container">
+      <transition name="fade" mode="in-out">
+        <router-view></router-view>
+      </transition>
+    </main>
+    <g-footer></g-footer>
+    <error></error>
+  </div>
 </template>
 
 <script>
 import GHeader from './components/GHeader.vue';
 import GFooter from './components/GFooter.vue';
+import Error from './components/components/Error.vue';
 
 export default {
   name: 'app',
@@ -24,6 +26,7 @@ export default {
   components: {
     GHeader,
     GFooter,
+    Error,
   },
 };
 </script>

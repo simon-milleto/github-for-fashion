@@ -10,6 +10,8 @@
 <script>
   import axios from 'axios';
 
+  import EventBus from '../../eventBus';
+
   import Card from '../components/Card.vue';
   import MainCard from '../components/MainCard.vue';
 
@@ -33,7 +35,12 @@
         .then((response) => {
           this.garments = response.data;
         })
-        .catch(error => console.error(error));
+        .catch(error => this.showError(error.message));
+    },
+    methods: {
+      showError(error) {
+        EventBus.$emit('showError', error);
+      },
     },
     components: {
       Card,
