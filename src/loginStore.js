@@ -22,6 +22,6 @@ class LoginStore {
   }
 }
 
-const sessionStore = new LoginStore(localStorage.token, localStorage.login, localStorage.name);
+const sessionStore = new LoginStore(localStorage.getItem('token'), localStorage.getItem('login'), localStorage.getItem('name'));
 
 export default sessionStore;
