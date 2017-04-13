@@ -1,16 +1,19 @@
 class LoginStore {
 
-  constructor(token, name) {
+  constructor(token, login, name) {
     this.state = {
       token,
+      login,
       name,
     };
   }
 
-  setLogin(token, name) {
+  setLogin(token, login, name) {
     this.token = token;
+    this.login = login;
     this.name = name;
     localStorage.setItem('token', token);
+    localStorage.setItem('login', login);
     localStorage.setItem('name', name);
   }
 
@@ -19,6 +22,6 @@ class LoginStore {
   }
 }
 
-const sessionStore = new LoginStore(localStorage.token, localStorage.name);
+const sessionStore = new LoginStore(localStorage.token, localStorage.login, localStorage.name);
 
 export default sessionStore;
