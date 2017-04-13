@@ -8,4 +8,7 @@ module.exports = {
       "no-param-reassign": 0,
       "no-console": 0,
     },
+    "globals": {
+    	"GitHub": true
+    }
 };

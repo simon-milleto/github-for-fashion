@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   name: 'create',
   data() {
@@ -43,13 +44,13 @@ export default {
   },
   methods: {
     sendGarment() {
-      axios.post(`http://localhost:3000/garments/`, this.garment)
+      axios.post('http://localhost:3000/garments/', this.garment)
         .then((response) => {
-          console.log(response.data)
+          console.log(response.data);
         })
         .catch(error => console.error(error));
-    }
-  }
+    },
+  },
 };
 </script>
 
