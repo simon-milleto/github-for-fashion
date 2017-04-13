@@ -24,7 +24,7 @@
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
           <span class="garment-detail__label">Iteration n°</span>
-          <span v-if="garment.commit">{{garment.commit.changes}}</span>
+          <span>{{garment.commitChanges}}</span>
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
           <span class="garment-detail__label">Type</span>
@@ -45,10 +45,11 @@
           <span>{{garment.status}}</span>
         </div>
       </div>
-      <commit-info :numberOfProposals="garment.commit.proposals.length"
-                  :changes="garment.commit.changes"
-                  :licence="garment.licence"
-                  :contributors="garment.commit.contributors">
+      <!-- <commit-info :v-if="garment.commit"
+                   :numberOfProposals="garment.commit.proposals.length"
+                   :changes="garment.commit.changes"
+                   :licence="garment.licence"
+                   :contributors="garment.commit.contributors"> -->
       </commit-info>
       <div class="garment-detail__description">
         <p class="garment-detail__description-label">Project details</p>
@@ -69,8 +70,8 @@
 </template>
 
 <script>
-
   import moment from 'moment';
+  import Github from 'github-api';
 
   import EventBus from '../../eventBus';
 
@@ -108,6 +109,7 @@
     },
     methods: {
       showError(error) {
+        console.log(error);
         EventBus.$emit('showError', error);
       },
     },
@@ -122,12 +124,32 @@
 
       const remoteRepo = gh.getRepo(this.user, this.repo);
 
-      remoteRepo.getContents('master', 'info.json', true, (err, content) => {
-        // console.log(content);
-        this.garment = content;
-        this.dataIsLoaded = true;
-        console.log(this.garment);
-      });
+      remoteRepo.getDetails()
+        .then((response) => {
+          console.log(response.data);
+          this.garment.creator = response.data.owner.login;
+          this.garment.creation_date = response.data.created_at;
+          this.garment.reference = response.data.id;
+          this.dataIsLoaded = true;
+        })
+        .catch(error => this.showError(error.message));
+
+      remoteRepo.getContributorStats()
+        .then((response) => {
+          let totalCommits = 0;
+          response.data.forEach((contributor) => {
+            totalCommits += contributor.total;
+          });
+          this.garment.commitChanges = totalCommits;
+          console.log(response.data);
+        })
+
+      remoteRepo.getContents('master', 'info.json', true)
+        .then((response) => {
+          Object.assign(this.garment, response.data);
+          console.log(this.garment);
+        })
+        .catch(error => this.showError(error.message));
     },
   };
 </script>
