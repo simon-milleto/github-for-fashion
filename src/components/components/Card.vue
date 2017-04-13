@@ -1,13 +1,13 @@
 <template>
   <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
     <div class="mdc-card">
-      <router-link :to="{ name: 'Garment Detail', params: { id: data.id }}">
+      <router-link :to="{ name: 'Garment Detail', params: {user: data.creator, repo: data.id}}">
         <div class="mdc-card__media">
           <img :src="data.image">
         </div>
       </router-link>
       <div class="mdc-card__primary">
-        <router-link :to="{ name: 'Garment Detail', params: { id: data.id }}">
+        <router-link :to="{ name: 'Garment Detail', params: {user: data.creator, repo: data.id}}">
           <div class="mdc-card__title mdc-card__title--large">{{data.title}}</div>
         </router-link>
         <div class="mdc-card__subtitle">{{data.creator}} on {{data.date | moment}}</div>
