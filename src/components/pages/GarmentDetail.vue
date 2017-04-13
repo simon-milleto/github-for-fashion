@@ -142,7 +142,7 @@
           });
           this.garment.commitChanges = totalCommits;
           console.log(response.data);
-        })
+        });
 
       remoteRepo.getContents('master', 'info.json', true)
         .then((response) => {
