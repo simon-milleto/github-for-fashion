@@ -27,7 +27,12 @@
     },
     methods: {
       verifyUser() {
-        sessionStore.setLogin(this.token, 'Clem');
+        const gh = new GitHub({
+          token: this.token,
+        });
+        gh.getUser().getProfile().then((user) => {
+          sessionStore.setLogin(this.token, user.data.login, user.data.name);
+        });
       },
     },
   };
