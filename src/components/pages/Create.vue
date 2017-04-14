@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import GitHub from 'github-api';
 import EventBus from '../../eventBus';
+import sessionStore from '../../loginStore';
 
 export default {
   name: 'create',
@@ -42,18 +42,41 @@ export default {
         description: '',
         type: '',
       },
+      state: sessionStore.state,
     };
   },
   methods: {
     sendGarment() {
-      axios.post('http://localhost:3000/garments/', this.garment)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch(error => this.showError(error.message));
-    },
-    showError(error) {
-      EventBus.$emit('showError', error);
+      const gh = new GitHub({
+        token: this.state.token,
+      });
+      const options = {
+        name: this.garment.title,
+        description: this.garment.title,
+        homepage: 'http://example.com',
+        auto_init: true,
+      };
+      const garmentConfig = 'garment-config.json';
+      return gh.getUser().getProfile()
+      .then(function (profileResponse) {
+        console.log(profileResponse.data.login); // Success!
+        const username = profileResponse.data.login;
+        return gh.getUser(username).createRepo(options).then(function (createResponse) {
+          const remoteRepo = gh.getRepo(username, createResponse.data.name);
+          const obj = {
+            title: 'github-for-fashion',
+          };
+          return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(obj), 'Garment project setup', function () {})
+          .then(function (repoResponse) {
+            console.log('success');
+            console.log(repoResponse);
+          });
+        });
+      })
+      .catch(function (reason) {
+        EventBus.$emit('showError', reason.message);
+      });
+      // user.createRepo(options);
     },
   },
 };
