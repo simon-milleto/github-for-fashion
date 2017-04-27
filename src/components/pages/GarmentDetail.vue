@@ -157,7 +157,7 @@
             filetype: mime.extension(asset.content_type),
             url: asset.url,
             available: asset.state === 'uploaded',
-          })
+          });
         });
       },
     },

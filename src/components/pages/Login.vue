@@ -32,7 +32,7 @@
         const gh = new Github({
           token: this.token,
         });
-        
+
         gh.getUser().getProfile().then((user) => {
           sessionStore.setLogin(this.token, user.data.login, user.data.name);
         });
