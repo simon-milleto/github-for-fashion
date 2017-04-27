@@ -27,7 +27,7 @@ export default {
     return {
       state: sessionStore.state,
     };
-  }
+  },
 };
 </script>
 

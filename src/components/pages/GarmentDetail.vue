@@ -79,7 +79,7 @@
   import Slideshow from '../components/Slideshow.vue';
   import CommitInfo from '../components/CommitInfo.vue';
   import Loader from '../components/Loader.vue';
-  import LoginStore from '../../loginStore.js';
+  import LoginStore from '../../loginStore';
 
   export default {
     name: 'garment-detail',
