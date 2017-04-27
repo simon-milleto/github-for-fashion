@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div v-if="state.token">
-      <h1>Hello {{state.name}} !</h1>
+      <h1>Hello {{state.login}} !</h1>
     </div>
     <div v-else>
       <p>Pour vous connecter, merci de vous créer un compte sur Github et de rentrer votre Access Token</p>
