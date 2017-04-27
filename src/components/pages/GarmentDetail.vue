@@ -2,7 +2,7 @@
 
   <div class="garment-detail">
     <loader v-if="!dataIsLoaded"></loader>
-    <div class="garment-detail__content" v-if="dataIsLoaded">
+    <div v-else="" class="garment-detail__content">
       <h2 class="garment-detail__title">{{garment.title}}</h2>
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
@@ -45,11 +45,10 @@
           <span>{{garment.status}}</span>
         </div>
       </div>
-      <!-- <commit-info :v-if="garment.commit"
-                   :numberOfProposals="garment.commit.proposals.length"
-                   :changes="garment.commit.changes"
+      <commit-info :numberOfProposals="garment.numberOfProposals"
+                   :changes="garment.commitChanges"
                    :licence="garment.licence"
-                   :contributors="garment.commit.contributors"> -->
+                   :contributors="garment.contributors">
       </commit-info>
       <div class="garment-detail__description">
         <p class="garment-detail__description-label">Project details</p>
@@ -72,6 +71,7 @@
 <script>
   import moment from 'moment';
   import Github from 'github-api';
+  import mime from 'mime-types';
 
   import EventBus from '../../eventBus';
   import LoginStore from '../../loginStore';
@@ -81,7 +81,6 @@
   import Slideshow from '../components/Slideshow.vue';
   import CommitInfo from '../components/CommitInfo.vue';
   import Loader from '../components/Loader.vue';
-  import LoginStore from '../../loginStore';
 
   export default {
     name: 'garment-detail',
@@ -104,7 +103,22 @@
     // },
     data() {
       return {
-        garment: {},
+        garment: {
+          reference: '',
+          title: '',
+          description: '',
+          status: '',
+          type: '',
+          creator: '',
+          creation_date: '',
+          licence: 'Information not available yet on public API',
+          commitChanges: '',
+          contributors: '',
+          numberOfProposals: '',
+          images: [],
+          infos: [],
+          files: [],
+        },
         dataIsLoaded: false,
       };
     },
@@ -117,6 +131,11 @@
         this.garment.creator = repoDetails.owner.login;
         this.garment.creation_date = repoDetails.created_at;
         this.garment.reference = repoDetails.id;
+        this.garment.description = repoDetails.description;
+        this.garment.infos.push({
+          label: 'favourites',
+          value: repoDetails.watchers,
+        });
       },
       formatRepoContributorStats(contributors) {
         let totalCommits = 0;
@@ -124,9 +143,22 @@
           totalCommits += contributor.total;
         });
         this.garment.commitChanges = totalCommits;
+        this.garment.contributors = contributors.length;
       },
       formatRepoContents(repoContents) {
         Object.assign(this.garment, repoContents);
+      },
+      formatRepoPullRequests(repoPullRequests) {
+        this.garment.numberOfProposals = repoPullRequests.length;
+      },
+      formatRepoReleases(repoReleases) {
+        repoReleases[0].assets.forEach((asset) => {
+          this.garment.files.push({
+            filetype: mime.extension(asset.content_type),
+            url: asset.url,
+            available: asset.state === 'uploaded',
+          })
+        });
       },
     },
     filters: {
@@ -134,7 +166,7 @@
     },
     props: ['user', 'repo'],
     mounted() {
-      const gh = new GitHub({
+      const gh = new Github({
         token: LoginStore.state.token,
       });
 
@@ -143,12 +175,16 @@
       const repoDetails = remoteRepo.getDetails();
       const repoContributorStats = remoteRepo.getContributorStats();
       const repoContents = remoteRepo.getContents('master', 'info.json', true);
+      const repoPullRequests = remoteRepo.listPullRequests();
+      const repoReleases = remoteRepo.listReleases();
 
-      Promise.all([repoDetails, repoContributorStats, repoContents])
+      Promise.all([repoDetails, repoContributorStats, repoContents, repoPullRequests, repoReleases])
         .then((response) => {
           this.formatRepoDetails(response[0].data);
           this.formatRepoContributorStats(response[1].data);
           this.formatRepoContents(response[2].data);
+          this.formatRepoPullRequests(response[3].data);
+          this.formatRepoReleases(response[4].data);
 
           this.dataIsLoaded = true;
         })
