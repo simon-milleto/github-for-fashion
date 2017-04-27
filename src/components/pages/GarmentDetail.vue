@@ -79,6 +79,7 @@
   import Slideshow from '../components/Slideshow.vue';
   import CommitInfo from '../components/CommitInfo.vue';
   import Loader from '../components/Loader.vue';
+  import LoginStore from '../../loginStore';
 
   export default {
     name: 'garment-detail',
@@ -116,7 +117,7 @@
     props: ['user', 'repo'],
     mounted() {
       const gh = new GitHub({
-        token: 'e07d25663b3a45d7362c5842dab25f2d74689a93',
+        token: LoginStore.state.token,
       });
 
       const remoteRepo = gh.getRepo(this.user, this.repo);

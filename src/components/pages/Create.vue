@@ -26,6 +26,7 @@
 import axios from 'axios';
 
 import EventBus from '../../eventBus';
+
 export default {
   name: 'create',
   data() {
