@@ -177,7 +177,7 @@
 
           this.dataIsLoaded = true;
         })
-        .catch(error => this.showError(error));
+        .catch(error => this.showError(error.message));
     },
   };
 </script>
