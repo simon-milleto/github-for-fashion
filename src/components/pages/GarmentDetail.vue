@@ -91,16 +91,6 @@
       CommitInfo,
       Loader,
     },
-    // beforeCreate() {
-    //   const id = this.$route.params.id;
-
-    //   axios.get(`http://localhost:3000/garments/${id}`)
-    //     .then((response) => {
-    //       this.garment = response.data;
-    //       this.dataIsLoaded = true;
-    //     })
-    //     .catch(error => this.showError(error.message));
-    // },
     data() {
       return {
         garment: {
@@ -124,7 +114,6 @@
     },
     methods: {
       showError(error) {
-        console.log(error);
         EventBus.$emit('showError', error);
       },
       formatRepoDetails(repoDetails) {
@@ -188,7 +177,7 @@
 
           this.dataIsLoaded = true;
         })
-        .catch(error => console.log(error));
+        .catch(error => this.showError(error));
     },
   };
 </script>
