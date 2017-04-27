@@ -14,6 +14,7 @@
 
   import Card from '../components/Card.vue';
   import Loader from '../components/Loader.vue';
+  import LoginStore from '../../loginStore.js';
 
   export default {
     name: 'profil',
@@ -26,11 +27,11 @@
     },
     mounted() {
       var gh = new GitHub({
-         token: '4a0b417c5aaeac446ea426ac769b502d1b1a0ab2'
+         token: LoginStore.state.token
       });
       var user = gh.getUser(this.user);
           if (user) {
-              user.listRepos( {AcceptHeader: 'mercy-preview+json'}, (err, repos) => {
+              user.listRepos( (err, repos) => {
                   if (repos) {
                     repos.forEach( (repo) => {
                       var remoteRepo = gh.getRepo(this.user, repo.name);
