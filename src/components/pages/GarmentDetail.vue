@@ -6,8 +6,8 @@
       <h2 class="garment-detail__title">{{garment.title}}</h2>
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-          <slideshow :images="garment.images">
-          </slideshow>
+          <!-- <slideshow :images="garment.images">
+          </slideshow> -->
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
           <info-box v-for="info in garment.infos"
@@ -74,6 +74,7 @@
   import Github from 'github-api';
 
   import EventBus from '../../eventBus';
+  import LoginStore from '../../loginStore';
 
   import InfoBox from '../components/InfoBox.vue';
   import DownloadBox from '../components/DownloadBox.vue';
@@ -112,6 +113,21 @@
         console.log(error);
         EventBus.$emit('showError', error);
       },
+      formatRepoDetails(repoDetails) {
+        this.garment.creator = repoDetails.owner.login;
+        this.garment.creation_date = repoDetails.created_at;
+        this.garment.reference = repoDetails.id;
+      },
+      formatRepoContributorStats(contributors) {
+        let totalCommits = 0;
+        contributors.forEach((contributor) => {
+          totalCommits += contributor.total;
+        });
+        this.garment.commitChanges = totalCommits;
+      },
+      formatRepoContents(repoContents) {
+        Object.assign(this.garment, repoContents);
+      },
     },
     filters: {
       moment: date => moment(date).format('L'),
@@ -124,32 +140,19 @@
 
       const remoteRepo = gh.getRepo(this.user, this.repo);
 
-      remoteRepo.getDetails()
+      const repoDetails = remoteRepo.getDetails();
+      const repoContributorStats = remoteRepo.getContributorStats();
+      const repoContents = remoteRepo.getContents('master', 'info.json', true);
+
+      Promise.all([repoDetails, repoContributorStats, repoContents])
         .then((response) => {
-          console.log(response.data);
-          this.garment.creator = response.data.owner.login;
-          this.garment.creation_date = response.data.created_at;
-          this.garment.reference = response.data.id;
+          this.formatRepoDetails(response[0].data);
+          this.formatRepoContributorStats(response[1].data);
+          this.formatRepoContents(response[2].data);
+
           this.dataIsLoaded = true;
         })
-        .catch(error => this.showError(error.message));
-
-      remoteRepo.getContributorStats()
-        .then((response) => {
-          let totalCommits = 0;
-          response.data.forEach((contributor) => {
-            totalCommits += contributor.total;
-          });
-          this.garment.commitChanges = totalCommits;
-          console.log(response.data);
-        });
-
-      remoteRepo.getContents('master', 'info.json', true)
-        .then((response) => {
-          Object.assign(this.garment, response.data);
-          console.log(this.garment);
-        })
-        .catch(error => this.showError(error.message));
+        .catch(error => console.log(error));
     },
   };
 </script>
