@@ -6,8 +6,7 @@
       <h2 class="garment-detail__title">{{garment.title}}</h2>
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-          <!-- <slideshow :images="garment.images">
-          </slideshow> -->
+          <slideshow v-if="garment.images.length > 0" :images="garment.images"></slideshow>
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
           <info-box v-for="info in garment.infos"
