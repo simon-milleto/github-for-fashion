@@ -45,8 +45,8 @@ export default {
       });
       const remoteRepo = gh.getRepo(this.data.creator, this.data.title);
       remoteRepo.fork()
-      .then(() => {
-        router.push({ name: 'Garment Detail', params: { user: this.user.login, repo: this.data.title } });
+      .then((response) => {
+        router.push({ name: 'Garment Detail', params: { user: this.user.login, repo: response.data.name } });
       }).catch((error) => {
         EventBus.$emit('showError', error);
       });
