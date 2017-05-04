@@ -34,7 +34,7 @@ import GitHub from 'github-api';
 import EventBus from '../../eventBus';
 import sessionStore from '../../loginStore';
 import router from '../../router';
-import * as constants from '../../constants';
+import * as constants from '../../licences';
 
 export default {
   name: 'create',
@@ -44,16 +44,7 @@ export default {
       categories: ['Kid', 'Teen', 'Adult', 'Mature', 'MILF'],
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
       types: ['T-shirt', 'Sweat', 'Pants', 'Accessories', 'Underwear'],
-      licences: [
-        constants.CC_BY,
-        constants.CC_BY_SA,
-        constants.CC_BY_ND,
-        constants.CC_BY_NC,
-        constants.CC_BY_NC_SA,
-        constants.CC_BY_NC_ND,
-        constants.CC0,
-        constants.NO_LICENCE,
-      ],
+      licences: constants.keys().map(),
       garment: {
         title: '',
         category: '',

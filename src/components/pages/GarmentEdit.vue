@@ -1,17 +1,17 @@
 <template>
-  <div class="garment-detail">
+  <div class="garment-edit">
     <loader v-if="!dataIsLoaded"></loader>
     <div v-else="" class="garment-detail__content">
-      <h2 class="garment-detail__title">{{garment.title}}</h2>
+      <input id="title" type="text" name="title" v-model='garment.title' class="garment-detail__title">
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
           <slideshow v-if="garment.images.length > 0" :images="garment.images"></slideshow>
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-          <info-box v-for="info in garment.infos"
-                    :value="info.value"
-                    :label="info.label">
-          </info-box>
+            <div v-for="(size, index) in sizes">
+                <input type="checkbox" :name="size" :value="size" :id="size" v-model='garment.sizes'>
+                <label :for="size">{{size}}</label>
+            </div>
         </div>
       </div>
       <div class="separator"></div>
@@ -48,9 +48,15 @@
                    :licence="garment.licence"
                    :contributors="garment.contributors">
       </commit-info>
+
+      <label for="licence">Licence</label>
+      <select name="licence" id="licence" v-model='garment.licence'>
+          <option v-for="licence in licences" :value="licence">{{licence}}</option>
+      </select>
+      
       <div class="garment-detail__description">
         <p class="garment-detail__description-label">Project details</p>
-        <p>{{garment.description}}</p>
+        <textarea name="description" id="description" v-model="garment.description" class="garment-detail__description-label">garment.description</textarea>
       </div>
       <div class="garment-detail__download">
         <p class="garment-detail__download-label">Download</p>
@@ -82,7 +88,7 @@
   import Loader from '../components/Loader.vue';
 
   export default {
-    name: 'garment-detail',
+    name: 'garment-edit',
     components: {
       InfoBox,
       DownloadBox,
@@ -136,13 +142,13 @@
         this.garment.type = repoContents.type;
         this.garment.licence = repoContents.licence;
         this.garment.status = repoContents.status;
+        this.garment.sizes = repoContents.sizes;
         this.garment.infos.push({
           label: 'category',
           value: repoContents.category,
         });
         this.garment.infos.push({
           label: 'sizes',
-          value: repoContents.sizes.join(' '),
         });
       },
       formatRepoPullRequests(repoPullRequests) {
