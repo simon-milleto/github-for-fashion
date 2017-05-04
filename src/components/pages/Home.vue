@@ -36,6 +36,22 @@
           this.garments = response.data;
         })
         .catch(error => this.showError(error.message));
+      const vm = this;
+      fetch('https://raw.githubusercontent.com/ecvdbdx1617/github-for-fashion/master/content/cover.json')
+      .then(
+        (response) => {
+          if (response.status !== 200) {
+            console.log(response.status);
+            return;
+          }
+          response.json().then((data) => {
+            vm.mainCard.title = data.primary.user;
+          });
+        },
+      )
+      .catch((err) => {
+        console.log('Fetch Error :-S', err);
+      });
     },
     methods: {
       showError(error) {
