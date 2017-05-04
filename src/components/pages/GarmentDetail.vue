@@ -71,6 +71,7 @@
   import moment from 'moment';
   import Github from 'github-api';
   import mime from 'mime-types';
+  import _ from 'lodash';
 
   import EventBus from '../../eventBus';
   import LoginStore from '../../loginStore';
@@ -101,9 +102,9 @@
           creator: '',
           creation_date: '',
           licence: 'Information not available yet on public API',
-          commitChanges: '',
+          commitChanges: 0,
           contributors: '',
-          numberOfProposals: '',
+          numberOfProposals: 0,
           images: [],
           infos: [],
           files: [],
@@ -126,10 +127,8 @@
         });
       },
       formatRepoContributorStats(contributors) {
-        let totalCommits = 0;
-        contributors.forEach((contributor) => {
-          totalCommits += contributor.total;
-        });
+        const totalCommits = _.sumBy(contributors, contributor => contributor.total);
+
         this.garment.commitChanges = totalCommits;
         this.garment.contributors = contributors.length;
       },
@@ -140,13 +139,15 @@
         this.garment.numberOfProposals = repoPullRequests.length;
       },
       formatRepoReleases(repoReleases) {
-        repoReleases[0].assets.forEach((asset) => {
-          this.garment.files.push({
-            filetype: mime.extension(asset.content_type),
-            url: asset.url,
-            available: asset.state === 'uploaded',
+        if (repoReleases.length > 0) {
+          repoReleases[0].assets.forEach((asset) => {
+            this.garment.files.push({
+              filetype: mime.extension(asset.content_type),
+              url: asset.url,
+              available: asset.state === 'uploaded',
+            });
           });
-        });
+        }
       },
     },
     filters: {
@@ -167,12 +168,12 @@
       const repoReleases = remoteRepo.listReleases();
 
       Promise.all([repoDetails, repoContributorStats, repoContents, repoPullRequests, repoReleases])
-        .then((response) => {
-          this.formatRepoDetails(response[0].data);
-          this.formatRepoContributorStats(response[1].data);
-          this.formatRepoContents(response[2].data);
-          this.formatRepoPullRequests(response[3].data);
-          this.formatRepoReleases(response[4].data);
+        .then(([rDetails, rContributors, rContents, rPullRequests, rReleases]) => {
+          this.formatRepoDetails(rDetails.data);
+          this.formatRepoContributorStats(rContributors.data);
+          this.formatRepoContents(rContents.data);
+          this.formatRepoPullRequests(rPullRequests.data);
+          this.formatRepoReleases(rReleases.data);
 
           this.dataIsLoaded = true;
         })
