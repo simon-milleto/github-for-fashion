@@ -22,8 +22,8 @@
             <label>Coller votre token</label>
             <input type="text" v-model="logininput">
           <div v-if="loader" class="loader_login"></div>
-          <a class="link_login" href="https://github.com/settings/tokens">Ou le trouver ?</a>
-          <p>Info: Lors de sa création, veuillez activer le droit d'accéder aux répertoires publiques.</p>
+          <a class="link_login" href="https://github.com/settings/tokens">Where find it ?</a>
+          <p>Info: When creating it, please enable the right to access public directories.</p>
         </div>
         </section>
       </div>
