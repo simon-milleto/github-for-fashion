@@ -39,8 +39,8 @@ export default {
   data() {
     return {
       user: LoginStore.state,
-      delete_title: "Are you sure you want to delete this repo ?",
-      delete_desc: "This action is definitive",
+      delete_title: 'Are you sure you want to delete this repo ?',
+      delete_desc: 'This action is definitive',
       dialog: false,
     };
   },

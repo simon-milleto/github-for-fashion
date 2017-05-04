@@ -65,7 +65,7 @@ export default {
   methods: {
     deleteCard(id) {
       this.garments = _.reject(this.garments, { id });
-    }
+    },
   },
 };
 </script>
