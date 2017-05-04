@@ -24,6 +24,8 @@
 import moment from 'moment';
 import GitHub from 'github-api';
 import LoginStore from '../../loginStore';
+import router from '../../router';
+import EventBus from '../../eventBus';
 
 export default {
   name: 'card',
@@ -44,13 +46,13 @@ export default {
       const remoteRepo = gh.getRepo(this.data.creator, this.data.title);
       if (remoteRepo) {
         remoteRepo.fork()
-        .then((response) => {
-          console.log(response);
+        .then(() => {
+          router.push({ name: 'Garment Detail', params: { user: this.user.login, repo: this.data.title }})
         }).catch((error) => {
-          console.log(error);
+          EventBus.$emit('showError', error);
         });
       } else {
-        console.log('error');
+        EventBus.$emit('showError', 'Repository not found');
       }
     },
   },
