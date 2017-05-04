@@ -152,7 +152,7 @@
           repoReleases[0].assets.forEach((asset) => {
             this.garment.files.push({
               filetype: mime.extension(asset.content_type),
-              url: asset.url,
+              url: asset.browser_download_url,
               available: asset.state === 'uploaded',
             });
           });
