@@ -52,6 +52,7 @@ export default {
         constants.CC_BY_NC_SA,
         constants.CC_BY_NC_ND,
         constants.CC0,
+        constants.NO_LICENCE,
       ],
       garment: {
         title: '',
