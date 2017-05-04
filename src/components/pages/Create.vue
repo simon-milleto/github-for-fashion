@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import GitHub from 'github-api';
 import EventBus from '../../eventBus';
 import sessionStore from '../../loginStore';
 

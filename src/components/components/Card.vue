@@ -22,6 +22,7 @@
 
 <script>
 import moment from 'moment';
+import GitHub from 'github-api';
 import LoginStore from '../../loginStore';
 
 export default {
@@ -46,13 +47,13 @@ export default {
         .then((response) => {
           console.log(response);
         }).catch((error) => {
-          console.log('error');
+          console.log(error);
         });
       } else {
         console.log('error');
       }
     },
-  }
+  },
 };
 </script>
 
