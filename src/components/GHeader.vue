@@ -7,21 +7,24 @@
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <router-link :to="{name: 'Home'}" class="material-icons">home</router-link>
         </section>
-        <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <router-link :to="{name: 'Login'}" class="mdc-toolbar__title">{{ state.name }}</router-link>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+          <router-link :to="{name: 'create'}" class="material-icons">add</router-link>
         </section>
         <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <a @click.prevent="disconnect" href="#">Se déconnecter</a>
+          <span>{{ state.name }}</span>
+        </section>
+        <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
+           <a @click.prevent="disconnect" href="#">Se déconnecter</a>
         </section>
         <section v-else class="mdc-toolbar__section mdc-toolbar__section--align-start" id="login">
           <a @click.prevent="showLogin = true" href="#">Login</a>
           <div v-if="showLogin">
             <label>Coller votre token</label>
             <input type="text" v-model="logininput">
-            <div v-if="loader" class="loader_login"></div>
-            <a class="link_login" href="https://github.com/settings/tokens">Ou le trouver ?</a>
-            <p>Info: Lors de sa création, veuillez activer le droit d'accéder aux répertoires publiques.</p>
-          </div>
+          <div v-if="loader" class="loader_login"></div>
+          <a class="link_login" href="https://github.com/settings/tokens">Ou le trouver ?</a>
+          <p>Info: Lors de sa création, veuillez activer le droit d'accéder aux répertoires publiques.</p>
+        </div>
         </section>
       </div>
     </header>
@@ -30,6 +33,7 @@
 <script>
 
 import sessionStore from '../loginStore';
+import GitHub from 'github-api';
 
 export default {
   name: 'g-header',

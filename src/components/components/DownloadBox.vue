@@ -1,8 +1,8 @@
 <template>
-  <div class="download-box mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
+  <a :href="url" :download="url" class="download-box mdc-layout-grid__cell mdc-layout-grid__cell--span-2">
     <span class="download-box__label">.{{type}}</span>
     <i class="download-box__status material-icons">{{available ? 'check' : 'clear'}}</i>
-  </div>
+  </a>
 </template>
 
 <script>
