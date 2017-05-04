@@ -15,20 +15,45 @@
       <div class="mdc-card__supporting-text">
         <div v-if="data.commit">{{data.commit.contributors}} Contributers</div>
       </div>
+      <button v-if="user.login && data.creator !== user.login" v-on:click="fork">Copier sur mon profil</button>
     </div>
   </div>
 </template>
 
 <script>
-  import moment from 'moment';
+import moment from 'moment';
+import LoginStore from '../../loginStore';
 
-  export default {
-    name: 'card',
-    props: ['data'],
-    filters: {
-      moment: date => moment(date).format('L'),
+export default {
+  name: 'card',
+  props: ['data'],
+  filters: {
+    moment: date => moment(date).format('L'),
+  },
+  data() {
+    return {
+      user: LoginStore.state,
+    };
+  },
+  methods: {
+    fork() {
+      const gh = new GitHub({
+        token: this.user.token,
+      });
+      const remoteRepo = gh.getRepo(this.data.creator, this.data.title);
+      if (remoteRepo) {
+        remoteRepo.fork()
+        .then((response) => {
+          console.log(response);
+        }).catch((error) => {
+          console.log('error');
+        });
+      } else {
+        console.log('error');
+      }
     },
-  };
+  }
+};
 </script>
 
 <style>
