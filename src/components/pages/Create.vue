@@ -17,6 +17,10 @@
             </div>
             <label for="description">Description</label>
             <textarea name="description" id="description" v-model="garment.description"></textarea>
+            <label for="licence">Licence</label>
+            <select name="licence" id="licence" v-model='garment.licence'>
+                <option v-for="licence in licences" :value="licence" >{{licence}}</option>
+            </select>
             <input type="submit" value="GO">
         </form>
     </main>
@@ -36,12 +40,14 @@ export default {
       categories: ['Kid', 'Teen', 'Adult', 'Mature', 'MILF'],
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
       types: ['T-shirt', 'Sweat', 'Pants', 'Accessories', 'Underwear'],
+      licences: ['Apache', 'GNU', 'MIT', 'None'],
       garment: {
         title: '',
         category: '',
         sizes: [],
         description: '',
         type: '',
+        licence: '',
       },
       state: sessionStore.state,
     };
@@ -51,33 +57,41 @@ export default {
       const gh = new GitHub({
         token: this.state.token,
       });
+
       const options = {
         name: this.garment.title,
-        description: this.garment.title,
+        description: this.garment.description,
         homepage: 'http://example.com',
         auto_init: true,
       };
+
+      const garmentConfigOptions = {
+        title: 'github-for-fashion',
+        description: this.garment.description,
+        type: this.garment.type,
+        category: this.garment.category,
+        sizes: this.garment.sizes,
+        licence: this.garment.licence,
+      }
+
       const garmentConfig = 'garment-config.json';
+
       return gh.getUser().getProfile()
-      .then(function (profileResponse) {
-        console.log(profileResponse.data.login); // Success!
-        const username = profileResponse.data.login;
-        return gh.getUser(username).createRepo(options).then(function (createResponse) {
-          const remoteRepo = gh.getRepo(username, createResponse.data.name);
-          const obj = {
-            title: 'github-for-fashion',
-          };
-          return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(obj), 'Garment project setup', function () {})
-          .then(function (repoResponse) {
-            console.log('success');
-            console.log(repoResponse);
+        .then(function (profileResponse) {
+          console.log(profileResponse.data.login); // Success!
+          const username = profileResponse.data.login;
+          return gh.getUser(username).createRepo(options).then(function (createResponse) {
+            const remoteRepo = gh.getRepo(username, createResponse.data.name);
+            return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment project setup', function () {})
+            .then(function (repoResponse) {
+              console.log('success');
+              console.log(repoResponse);
+            });
           });
+        })
+        .catch(function (reason) {
+          EventBus.$emit('showError', reason.message);
         });
-      })
-      .catch(function (reason) {
-        EventBus.$emit('showError', reason.message);
-      });
-      // user.createRepo(options);
     },
   },
 };

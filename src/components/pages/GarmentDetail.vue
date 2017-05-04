@@ -1,5 +1,4 @@
 <template>
-
   <div class="garment-detail">
     <loader v-if="!dataIsLoaded"></loader>
     <div v-else="" class="garment-detail__content">
@@ -133,7 +132,16 @@
         this.garment.contributors = contributors.length;
       },
       formatRepoContents(repoContents) {
-        Object.assign(this.garment, repoContents);
+        this.garment.type = repoContents.type;
+        this.garment.licence = repoContents.licence;
+        this.garment.infos.push({
+          label: 'category',
+          value: repoContents.category,
+        });
+        this.garment.infos.push({
+          label: 'sizes',
+          value: repoContents.sizes.join(' '),
+        });
       },
       formatRepoPullRequests(repoPullRequests) {
         this.garment.numberOfProposals = repoPullRequests.length;
@@ -163,7 +171,7 @@
 
       const repoDetails = remoteRepo.getDetails();
       const repoContributorStats = remoteRepo.getContributorStats();
-      const repoContents = remoteRepo.getContents('master', 'info.json', true);
+      const repoContents = remoteRepo.getContents('master', 'garment-config.json', true);
       const repoPullRequests = remoteRepo.listPullRequests();
       const repoReleases = remoteRepo.listReleases();
 
