@@ -66,17 +66,17 @@ export default {
     /* eslint-disable object-shorthand */
     /* eslint-disable func-names */
     logininput: function (val) {
-      var val = val.trim();
-      if (val.length >= 2) {
+      const valTrim = val.trim();
+      if (valTrim.length >= 2) {
         this.loader = true;
-        this.token = val;
+        this.token = valTrim;
 
         const gh = new GitHub({
-          token: val.trim(),
+          token: valTrim,
         });
 
         gh.getUser().getProfile().then((user) => {
-          sessionStore.setLogin(val.trim(), user.data.login, user.data.name);
+          sessionStore.setLogin(valTrim, user.data.login, user.data.name);
           this.state.name = user.data.name;
           this.state.login = user.data.login;
           this.showLogin = false;
