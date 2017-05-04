@@ -19,7 +19,7 @@
         <section v-else class="mdc-toolbar__section mdc-toolbar__section--align-start" id="login">
           <a @click.prevent="showLogin = true" href="#">Login</a>
           <div v-if="showLogin">
-            <label>Coller votre token</label>
+            <label>Paste your Token</label>
             <input type="text" v-model="logininput">
           <div v-if="loader" class="loader_login"></div>
           <a class="link_login" href="https://github.com/settings/tokens">Where find it ?</a>
