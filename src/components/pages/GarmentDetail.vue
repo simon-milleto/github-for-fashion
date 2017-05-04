@@ -116,6 +116,7 @@
         EventBus.$emit('showError', error);
       },
       formatRepoDetails(repoDetails) {
+        this.garment.title = repoDetails.name;
         this.garment.creator = repoDetails.owner.login;
         this.garment.creation_date = repoDetails.created_at;
         this.garment.reference = repoDetails.id;
