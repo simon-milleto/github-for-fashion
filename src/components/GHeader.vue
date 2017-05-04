@@ -11,10 +11,10 @@
           <router-link :to="{name: 'create'}" class="material-icons">add</router-link>
         </section>
         <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <span>{{ state.name }}</span>
+          <span>{{ state.name || state.login }}</span>
         </section>
         <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
-           <a @click.prevent="disconnect" href="#">Se déconnecter</a>
+           <a @click.prevent="disconnect" href="#">Logout</a>
         </section>
         <section v-else class="mdc-toolbar__section mdc-toolbar__section--align-start" id="login">
           <a @click.prevent="showLogin = true" href="#">Login</a>
@@ -56,6 +56,7 @@ export default {
     disconnect() {
       sessionStore.clearLogin();
       this.state.name = '';
+      this.state.login = '';
     },
   },
   watch: {
@@ -73,6 +74,7 @@ export default {
         gh.getUser().getProfile().then((user) => {
           sessionStore.setLogin(val.trim(), user.data.login, user.data.name);
           this.state.name = user.data.name;
+          this.state.login = user.data.login;
           this.showLogin = false;
           this.loader = false;
         });
