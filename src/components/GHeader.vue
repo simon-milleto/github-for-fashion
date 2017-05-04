@@ -75,14 +75,11 @@ export default {
         });
 
         gh.getUser().getProfile().then((user) => {
-            sessionStore.setLogin(val.trim(), user.data.login, user.data.name);
-            this.state.name = user.data.name;
-            console.log("this.state.name", this.state.name);
-            this.state.login = user.data.login;
-            this.showLogin = false;
-            this.loader = false;
-
-          
+          sessionStore.setLogin(val.trim(), user.data.login, user.data.name);
+          this.state.name = user.data.name;
+          this.state.login = user.data.login;
+          this.showLogin = false;
+          this.loader = false;
         });
       }
     },
