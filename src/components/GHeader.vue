@@ -10,10 +10,10 @@
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <router-link :to="{name: 'create'}" class="material-icons">add</router-link>
         </section>
-        <section v-if="state.name != null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
+        <section v-if="state.name !== null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span>{{ state.name }}</span>
         </section>
-        <section v-if="state.name == null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
+        <section v-if="state.name === null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <span>{{ state.login }}</span>
         </section>
         <section v-if="state.name || state.login" class="mdc-toolbar__section mdc-toolbar__section--align-start">
@@ -66,9 +66,10 @@ export default {
     /* eslint-disable object-shorthand */
     /* eslint-disable func-names */
     logininput: function (val) {
-      if (val.length >= 40) {
+      var val = val.trim();
+      if (val.length >= 2) {
         this.loader = true;
-        this.token = val.trim();
+        this.token = val;
 
         const gh = new GitHub({
           token: val.trim(),
