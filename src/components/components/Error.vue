@@ -42,4 +42,11 @@
 </script>
 
 <style>
+  .mdc-snackbar {
+    padding: 10px 25px;
+  }
+
+  .mdc-snackbar__text {
+    height: auto;
+  }
 </style>

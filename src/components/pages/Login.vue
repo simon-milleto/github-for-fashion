@@ -15,6 +15,8 @@
 </template>
 
 <script>
+  import Github from 'github-api';
+  
   import sessionStore from '../../loginStore';
 
   export default {
@@ -27,9 +29,10 @@
     },
     methods: {
       verifyUser() {
-        const gh = new GitHub({
+        const gh = new Github({
           token: this.token,
         });
+
         gh.getUser().getProfile().then((user) => {
           sessionStore.setLogin(this.token, user.data.login, user.data.name);
         });
