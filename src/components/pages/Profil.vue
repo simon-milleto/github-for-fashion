@@ -9,10 +9,10 @@
 </template>
 
 <script>
+import GitHub from 'github-api';
 import Card from '../components/Card.vue';
 import Loader from '../components/Loader.vue';
 import LoginStore from '../../loginStore';
-import GitHub from 'github-api';
 
 export default {
   name: 'profil',
