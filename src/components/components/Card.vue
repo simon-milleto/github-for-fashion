@@ -44,16 +44,12 @@ export default {
         token: this.user.token,
       });
       const remoteRepo = gh.getRepo(this.data.creator, this.data.title);
-      if (remoteRepo) {
-        remoteRepo.fork()
-        .then(() => {
-          router.push({ name: 'Garment Detail', params: { user: this.user.login, repo: this.data.title }})
-        }).catch((error) => {
-          EventBus.$emit('showError', error);
-        });
-      } else {
-        EventBus.$emit('showError', 'Repository not found');
-      }
+      remoteRepo.fork()
+      .then(() => {
+        router.push({ name: 'Garment Detail', params: { user: this.user.login, repo: this.data.title } });
+      }).catch((error) => {
+        EventBus.$emit('showError', error);
+      });
     },
   },
 };
