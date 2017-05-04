@@ -134,6 +134,7 @@
       formatRepoContents(repoContents) {
         this.garment.type = repoContents.type;
         this.garment.licence = repoContents.licence;
+        this.garment.status = repoContents.status;
         this.garment.infos.push({
           label: 'category',
           value: repoContents.category,
