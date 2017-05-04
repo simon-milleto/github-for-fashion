@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 
 import Home from './components/pages/Home.vue';
 import GarmentDetail from './components/pages/GarmentDetail.vue';
-import Login from './components/pages/Login.vue';
 import Create from './components/pages/Create.vue';
 import Profil from './components/pages/Profil.vue';
 
@@ -27,11 +26,6 @@ const router = new VueRouter({
       path: '/create',
       component: Create,
       name: 'create',
-    },
-    {
-      path: '/login',
-      component: Login,
-      name: 'Login',
     },
     {
       path: '/:user',
