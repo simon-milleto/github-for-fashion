@@ -10,10 +10,13 @@
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <router-link :to="{name: 'create'}" class="material-icons">add</router-link>
         </section>
-        <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <span>{{ state.name || state.login }}</span>
+        <section v-if="state.name !== null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span>{{ state.name }}</span>
         </section>
-        <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
+        <section v-if="state.name === null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <span>{{ state.login }}</span>
+        </section>
+        <section v-if="state.name || state.login" class="mdc-toolbar__section mdc-toolbar__section--align-start">
            <a @click.prevent="disconnect" href="#">Logout</a>
         </section>
         <section v-else class="mdc-toolbar__section mdc-toolbar__section--align-start" id="login">
@@ -63,16 +66,17 @@ export default {
     /* eslint-disable object-shorthand */
     /* eslint-disable func-names */
     logininput: function (val) {
-      if (val.length !== 0) {
+      const valTrim = val.trim();
+      if (valTrim.length >= 2) {
         this.loader = true;
-        this.token = val.trim();
+        this.token = valTrim;
 
         const gh = new GitHub({
-          token: val.trim(),
+          token: valTrim,
         });
 
         gh.getUser().getProfile().then((user) => {
-          sessionStore.setLogin(val.trim(), user.data.login, user.data.name);
+          sessionStore.setLogin(valTrim, user.data.login, user.data.name);
           this.state.name = user.data.name;
           this.state.login = user.data.login;
           this.showLogin = false;
