@@ -3,13 +3,15 @@
     <span>{{ user }}</span>
     <div class="mdc-layout-grid">
       <loader v-if="!dataIsLoaded"></loader>
-      <card v-for="garment in garments" :data="garment"></card>
+      <card v-for="garment in garments" :data="garment" @cardDeleted="deleteCard"></card>
     </div>
   </div>
 </template>
 
 <script>
 import GitHub from 'github-api';
+import _ from 'lodash';
+
 import Card from '../components/Card.vue';
 import Loader from '../components/Loader.vue';
 import LoginStore from '../../loginStore';
@@ -59,6 +61,11 @@ export default {
   components: {
     Card,
     Loader,
+  },
+  methods: {
+    deleteCard(id) {
+      this.garments = _.reject(this.garments, { id });
+    }
   },
 };
 </script>
