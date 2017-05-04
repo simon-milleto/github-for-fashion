@@ -19,7 +19,6 @@
     name: 'home',
     data() {
       return {
-        token: '7193e2f0ae88197bc828bee5f7c56fa8e909b735',
         garments: [],
         mainCard: {
           title: 'Patron Jacket zero waste',
@@ -38,7 +37,7 @@
         })
         .catch(error => this.showError(error.message));
       const vm = this;
-      fetch('https://raw.githubusercontent.com/ecvdbdx1617/github-for-fashion/master/cover.json')
+      fetch('https://raw.githubusercontent.com/ecvdbdx1617/github-for-fashion/master/content/cover.json')
       .then(
         (response) => {
           if (response.status !== 200) {
