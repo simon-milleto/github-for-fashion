@@ -31,9 +31,10 @@
 </template>
 
 <script>
+import GitHub from 'github-api';
 
 import sessionStore from '../loginStore';
-import GitHub from 'github-api';
+
 
 export default {
   name: 'g-header',
