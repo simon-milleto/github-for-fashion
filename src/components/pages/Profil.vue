@@ -1,14 +1,15 @@
 <template>
   <div class="profil">
-    <loader v-if="!dataIsLoaded"></loader>
     <span>{{ user }}</span>
     <div class="mdc-layout-grid">
+      <loader v-if="!dataIsLoaded"></loader>
       <card v-for="garment in garments" :data="garment"></card>
     </div>
   </div>
 </template>
 
 <script>
+import GitHub from 'github-api';
 import Card from '../components/Card.vue';
 import Loader from '../components/Loader.vue';
 import LoginStore from '../../loginStore';
@@ -44,6 +45,7 @@ export default {
                 },
                 image: 'test',
               });
+              this.dataIsLoaded = true;
             }).catch(() => {
               console.log('error');
             });
@@ -53,7 +55,6 @@ export default {
     } else {
       console.log('error');
     }
-    this.dataIsLoaded = true;
   },
   components: {
     Card,
