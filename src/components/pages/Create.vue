@@ -34,6 +34,7 @@ import GitHub from 'github-api';
 import EventBus from '../../eventBus';
 import sessionStore from '../../loginStore';
 import router from '../../router';
+import * as constants from '../../constants';
 
 export default {
   name: 'create',
@@ -43,14 +44,22 @@ export default {
       categories: ['Kid', 'Teen', 'Adult', 'Mature', 'MILF'],
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
       types: ['T-shirt', 'Sweat', 'Pants', 'Accessories', 'Underwear'],
-      licences: ['CC BY', 'CC BY-SA', 'CC BY-ND', 'CC BY-NC', 'CC BY-NC-SA', 'CC BY-NC-ND', 'CC0', 'none'],
+      licences: [
+        constants.CC_BY,
+        constants.CC_BY_SA,
+        constants.CC_BY_ND,
+        constants.CC_BY_NC,
+        constants.CC_BY_NC_SA,
+        constants.CC_BY_NC_ND,
+        constants.CC0,
+      ],
       garment: {
         title: '',
         category: '',
         sizes: [],
         description: '',
         type: '',
-        licence: 'CC BY',
+        licence: constants.CC_BY,
       },
       state: sessionStore.state,
     };
@@ -81,20 +90,21 @@ export default {
       const garmentConfig = 'garment-config.json';
 
       return gh.getUser().getProfile()
-        .then(function (profileResponse) {
+        .then((profileResponse) => {
           const user = profileResponse.data.login;
-          return gh.getUser(user).createRepo(options).then(function (createResponse) {
-            const repo = createResponse.data.name;
-            const remoteRepo = gh.getRepo(user, repo);
-            return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment project setup', function () {})
-            .then(() => {
-              router.push({ name: 'Garment Detail', params: { user, repo } });
-            });
-          });
+          return gh.getUser(user).createRepo(options)
+            .then((createResponse) => {
+              const repo = createResponse.data.name;
+              const remoteRepo = gh.getRepo(user, repo);
+              return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment project setup', {})
+                .then(() => {
+                  router.push({ name: 'Garment Detail', params: { user, repo } });
+                })
+                .catch(error => EventBus.$emit('showError', error.message));
+            })
+            .catch(error => EventBus.$emit('showError', error.message));
         })
-        .catch(function (reason) {
-          EventBus.$emit('showError', reason.message);
-        });
+        .catch(error => EventBus.$emit('showError', error.message));
     },
   },
 };
