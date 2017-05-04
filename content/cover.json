@@ -1,32 +1,11 @@
 {
-    "primary" : {
-        "user":"username",
-        "depo":"userdepo"
-    },
+    "primary" : "user/depo",
     "secondary": [
-        {
-            "user":"username",
-            "depo":"userdepo"
-        },
-        {
-            "user":"username",
-            "depo":"userdepo"
-        },
-        {
-            "user":"username",
-            "depo":"userdepo"
-        },
-        {
-            "user":"username",
-            "depo":"userdepo"
-        },
-        {
-            "user":"username",
-            "depo":"userdepo"
-        },
-        {
-            "user":"username",
-            "depo":"userdepo"
-        }
+        "user/depo",
+        "user/depo",
+        "user/depo",
+        "user/depo",
+        "user/depo",
+        "user/depo"
     ]
 }
