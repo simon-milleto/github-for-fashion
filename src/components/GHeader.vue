@@ -11,7 +11,7 @@
           <router-link :to="{name: 'create'}" class="material-icons">add</router-link>
         </section>
         <section v-if="state.name" class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <router-link :to="{name: 'Login'}" class="mdc-toolbar__title">{{ state.name || state.login }}</router-link>
+          <router-link :to="{name: 'Login'}" class="mdc-toolbar__title">{{ state.name || state.login || 'login' }}</router-link>
         </section>
         <section v-else class="mdc-toolbar__section mdc-toolbar__section--align-start">
           <router-link :to="{name: 'Login'}" class="mdc-toolbar__title">Login</router-link>
