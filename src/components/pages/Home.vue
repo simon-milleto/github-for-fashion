@@ -19,6 +19,7 @@
     name: 'home',
     data() {
       return {
+        token: '7193e2f0ae88197bc828bee5f7c56fa8e909b735',
         garments: [],
         mainCard: {
           title: 'Patron Jacket zero waste',
@@ -36,6 +37,22 @@
           this.garments = response.data;
         })
         .catch(error => this.showError(error.message));
+      const vm = this;
+      fetch('https://raw.githubusercontent.com/ecvdbdx1617/github-for-fashion/master/cover.json')
+      .then(
+        function(response) {
+          if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
+            return;
+          }
+          response.json().then(function(data) {
+            vm.mainCard.title = data.primary.user;
+          });
+        }
+      )
+      .catch(function(err) {
+        console.log('Fetch Error :-S', err);
+      });
     },
     methods: {
       showError(error) {
