@@ -185,6 +185,8 @@
           this.formatRepoPullRequests(rPullRequests.data);
           this.formatRepoReleases(rReleases.data);
 
+          this.$ga.event('Garment', 'view', `${this.user}/${this.garment.title}`);
+
           this.dataIsLoaded = true;
         })
         .catch(error => this.showError(error.message));
