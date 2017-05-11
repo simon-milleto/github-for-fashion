@@ -116,6 +116,7 @@
         EventBus.$emit('showError', error);
       },
       formatRepoDetails(repoDetails) {
+        this.garment.title = repoDetails.name;
         this.garment.creator = repoDetails.owner.login;
         this.garment.creation_date = repoDetails.created_at;
         this.garment.reference = repoDetails.id;
@@ -183,6 +184,8 @@
           this.formatRepoContents(rContents.data);
           this.formatRepoPullRequests(rPullRequests.data);
           this.formatRepoReleases(rReleases.data);
+
+          this.$ga.event('Garment', 'view', `${this.user}/${this.garment.title}`);
 
           this.dataIsLoaded = true;
         })
