@@ -116,6 +116,7 @@
         EventBus.$emit('showError', error);
       },
       formatRepoDetails(repoDetails) {
+        this.garment.title = repoDetails.name;
         this.garment.creator = repoDetails.owner.login;
         this.garment.creation_date = repoDetails.created_at;
         this.garment.reference = repoDetails.id;
@@ -153,7 +154,7 @@
           repoReleases[0].assets.forEach((asset) => {
             this.garment.files.push({
               filetype: mime.extension(asset.content_type),
-              url: asset.url,
+              url: asset.browser_download_url,
               available: asset.state === 'uploaded',
             });
           });
@@ -184,6 +185,8 @@
           this.formatRepoContents(rContents.data);
           this.formatRepoPullRequests(rPullRequests.data);
           this.formatRepoReleases(rReleases.data);
+
+          this.$ga.event('Garment', 'view', `${this.user}/${this.garment.title}`);
 
           this.dataIsLoaded = true;
         })

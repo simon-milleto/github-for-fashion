@@ -2,14 +2,14 @@
     <main class="garment-detail__container">
         <form v-on:submit.prevent="sendGarment">
             <label for="title">Title</label>
-            <input id="title" type="text" name="title" v-model='garment.title'>
+            <input id="title" type="text" name="title" v-model="garment.title">
             <label for="category">Category</label>
-            <select name="category" id="category" v-model='garment.category'>
+            <select name="category" id="category" v-model="garment.category">
                 <option value="" disabled selected hidden>Select a category</option>
                 <option v-for="category in categories" :value="category" >{{category}}</option>
             </select>
             <label for="type">Type</label>
-            <select name="type" id="type" v-model='garment.type'>
+            <select name="type" id="type" v-model="garment.type">
                 <option value="" disabled selected hidden>Select a type</option>
                 <option v-for="type in types" :value="type" >{{type}}</option>
              </select>
@@ -90,6 +90,8 @@ export default {
               const remoteRepo = gh.getRepo(user, repo);
               return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment project setup', {})
                 .then(() => {
+                  this.$ga.event('Garment', 'create', `${user}/${this.garment.title}`);
+
                   router.push({ name: 'Garment Detail', params: { user, repo } });
                 })
                 .catch(error => EventBus.$emit('showError', error.message));
