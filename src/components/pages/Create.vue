@@ -5,12 +5,10 @@
             <input id="title" type="text" name="title" v-model="garment.title">
             <label for="category">Category</label>
             <select name="category" id="category" v-model="garment.category">
-                <option value="" disabled selected hidden>Select a category</option>
                 <option v-for="category in categories" :value="category" >{{category}}</option>
             </select>
             <label for="type">Type</label>
             <select name="type" id="type" v-model="garment.type">
-                <option value="" disabled selected hidden>Select a type</option>
                 <option v-for="type in types" :value="type" >{{type}}</option>
              </select>
             <div v-for="(size, index) in sizes">
@@ -67,8 +65,6 @@ export default {
 
       const options = {
         name: this.garment.title,
-        description: '',
-        homepage: 'http://example.com',
         auto_init: true,
       };
 
@@ -84,6 +80,9 @@ export default {
 
       const garmentConfig = 'garment-config.json';
 
+      const readMe = 'README.md';
+
+
       return gh.getUser().getProfile()
         .then((profileResponse) => {
           const user = profileResponse.data.login;
@@ -91,11 +90,18 @@ export default {
             .then((createResponse) => {
               const repo = createResponse.data.name;
               const remoteRepo = gh.getRepo(user, repo);
-              return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment project setup', {})
+              const description = `# ${repo} \n`
+                                + 'This repo was automatically generated and edited through the use of [this project](https://github.com/ecvdbdx1617/github-for-fashion). \n\n'
+                                + `You can view this garment project [here](http://localhost:8080/garment/${this.state.login}/${repo}) instead of browsing the files from Github.`;
+              return remoteRepo.writeFile('master', readMe, description, 'Init description', {})
                 .then(() => {
-                  this.$ga.event('Garment', 'create', `${user}/${this.garment.title}`);
+                  remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment project setup', {})
+                    .then(() => {
+                      this.$ga.event('Garment', 'create', `${user}/${this.garment.title}`);
 
-                  router.push({ name: 'Garment Detail', params: { user, repo } });
+                      router.push({ name: 'Garment Detail', params: { user, repo } });
+                    })
+                    .catch(error => EventBus.$emit('showError', error.message));
                 })
                 .catch(error => EventBus.$emit('showError', error.message));
             })
