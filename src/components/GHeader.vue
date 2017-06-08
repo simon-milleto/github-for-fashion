@@ -7,7 +7,7 @@
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <router-link :to="{name: 'Home'}" class="material-icons">home</router-link>
         </section>
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+        <section v-if="state.name || state.login" class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
           <router-link :to="{name: 'create'}" class="material-icons">add</router-link>
         </section>
         <section v-if="state.name !== null" class="mdc-toolbar__section mdc-toolbar__section--align-start">
