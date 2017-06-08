@@ -1,11 +1,11 @@
 {
-    "primary" : "user/depo",
+    "primary" : "matthieu-brillaxis/test",
     "secondary": [
-        "user/depo",
-        "user/depo",
-        "user/depo",
-        "user/depo",
-        "user/depo",
-        "user/depo"
+        "matthieu-brillaxis/test",
+        "matthieu-brillaxis/test",
+        "matthieu-brillaxis/test",
+        "matthieu-brillaxis/test",
+        "matthieu-brillaxis/test",
+        "matthieu-brillaxis/test"
     ]
 }
