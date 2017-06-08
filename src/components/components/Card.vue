@@ -2,13 +2,13 @@
   <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
     <div class="mdc-card">
       <button v-if="user.login && data.creator === user.login" v-on:click="showDialog" class="btn-remove"><i class="material-icons">clear</i></button>
-      <router-link :to="{ name: 'Garment Detail', params: {user: data.creator, repo: data.id}}">
+      <router-link :to="{ name: 'Garment Detail', params: {user: data.creator, repo: data.title}}">
         <div class="mdc-card__media">
           <img :src="data.image">
         </div>
       </router-link>
       <div class="mdc-card__primary">
-        <router-link :to="{ name: 'Garment Detail', params: {user: data.creator, repo: data.id}}">
+        <router-link :to="{ name: 'Garment Detail', params: {user: data.creator, repo: data.title}}">
           <div class="mdc-card__title mdc-card__title--large">{{data.title}}</div>
         </router-link>
         <div class="mdc-card__subtitle">{{data.creator}} on {{data.date | moment}}</div>

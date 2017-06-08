@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import Home from './components/pages/Home.vue';
 import GarmentDetail from './components/pages/GarmentDetail.vue';
+import GarmentEdit from './components/pages/GarmentEdit.vue';
 import Create from './components/pages/Create.vue';
 import Profil from './components/pages/Profil.vue';
 
@@ -26,6 +27,12 @@ const router = new VueRouter({
       path: '/create',
       component: Create,
       name: 'create',
+    },
+    {
+      path: '/garment/:user/:repo/edit',
+      component: GarmentEdit,
+      name: 'Garment Edit',
+      props: true,
     },
     {
       path: '/:user',
