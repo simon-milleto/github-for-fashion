@@ -1,17 +1,31 @@
 <template>
   <div class="garment-edit">
     <loader v-if="!dataIsLoaded"></loader>
-    <div v-else="" class="garment-detail__content">
-      <input id="title" type="text" name="title" v-model='garment.title' class="garment-detail__title">
-      <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
-          <slideshow v-if="garment.images.length > 0" :images="garment.images"></slideshow>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+    <form v-else="" v-on:submit.prevent="updateGarment">
+      <div class="garment-detail__content">
+        <input id="title" type="text" name="title" v-model='garment.title' class="garment-detail__title">
+        <div class="mdc-layout-grid">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+            <slideshow v-if="garment.images.length > 0" :images="garment.images"></slideshow>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
+            <info-box v-for="info in garment.infos"
+            :value="info.value"
+            :label="info.label">
+          </info-box>
+          <div class="info-box">
+            <select name="category" id="category" v-model='garment.category' class="info-box__value">
+              <option v-for="category in categories" :value="category" :selected="garment.category === category" class="info-box__value">{{category}}</option>
+            </select>
+            <span class="info-box__label">Category</span>
+          </div>
+          <div class="info-box">
             <div v-for="(size, index) in sizes">
-                <input type="checkbox" :name="size" :value="size" :id="size" v-model='garment.sizes'>
-                <label :for="size">{{size}}</label>
+              <input type="checkbox" :name="size" :value="size" :id="size" v-model='garment.sizes' :checked="size.indexOf(garment.sizes) > -1" >
+              <label :for="size">{{size}}</label>
             </div>
+            <span class="info-box__label">Sizes</span>
+          </div>
         </div>
       </div>
       <div class="separator"></div>
@@ -26,7 +40,9 @@
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
           <span class="garment-detail__label">Type</span>
-          <span>{{garment.type}}</span>
+          <select name="type" id="type" v-model='garment.type'>
+            <option v-for="type in types" :value="type" :selected="garment.type === type">{{type}}</option>
+          </select>
         </div>
       </div>
       <div class="mdc-layout-grid">
@@ -43,17 +59,30 @@
           <span>{{garment.status}}</span>
         </div>
       </div>
-      <commit-info :numberOfProposals="garment.numberOfProposals"
-                   :changes="garment.commitChanges"
-                   :licence="garment.licence"
-                   :contributors="garment.contributors">
-      </commit-info>
 
-      <label for="licence">Licence</label>
-      <select name="licence" id="licence" v-model='garment.licence'>
-          <option v-for="licence in licences" :value="licence">{{licence}}</option>
-      </select>
-      
+      <div class="commit-info mdc-layout-grid">
+        <div class="commit-info__item mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <span class="commit-info__value">{{garment.numberOfProposals}}</span>
+          <span class="commit-info__label">Change Proposals</span>
+        </div>
+        <div class="commit-info__item mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <span class="commit-info__value">{{garment.commitChanges}}</span>
+          <span class="commit-info__label">Changes</span>
+        </div>
+        <div class="commit-info__item mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <label for="licence">Licence</label>
+          <select name="licence" id="licence" v-model='garment.licence'>
+            <option v-for="licence in licences" :value="licence" :selected="garment.licence === licence">{{licence}}</option>
+          </select>
+        </div>
+        <div class="commit-info__item mdc-layout-grid__cell mdc-layout-grid__cell--span-3">
+          <span class="commit-info__value">{{garment.contributors}}</span>
+          <span class="commit-info__label">Contributors</span>
+        </div>
+      </div>
+
+
+
       <div class="garment-detail__description">
         <p class="garment-detail__description-label">Project details</p>
         <textarea name="description" id="description" v-model="garment.description" class="garment-detail__description-label">garment.description</textarea>
@@ -62,14 +91,16 @@
         <p class="garment-detail__download-label">Download</p>
         <div class="mdc-layout-grid">
           <download-box v-for="file in garment.files"
-                        :type="file.filetype"
-                        :available="file.available"
-                        :url="file.url">
-          </download-box>
-        </div>
+          :type="file.filetype"
+          :available="file.available"
+          :url="file.url">
+        </download-box>
       </div>
     </div>
+    <input type="submit" value="SAVE">
   </div>
+</form>
+</div>
 </template>
 
 <script>
@@ -86,6 +117,13 @@
   import Slideshow from '../components/Slideshow.vue';
   import CommitInfo from '../components/CommitInfo.vue';
   import Loader from '../components/Loader.vue';
+
+  import router from '../../router';
+
+  import * as Licences from '../../licences';
+  import * as Types from '../../types';
+  import * as Sizes from '../../sizes';
+  import * as Categories from '../../categories';
 
   export default {
     name: 'garment-edit',
@@ -113,8 +151,15 @@
           images: [],
           infos: [],
           files: [],
+          category: '',
+          sizes: [],
         },
         dataIsLoaded: false,
+        licences: Licences,
+        categories: Categories,
+        sizes: Sizes,
+        types: Types,
+        state: LoginStore.state,
       };
     },
     methods: {
@@ -125,7 +170,6 @@
         this.garment.creator = repoDetails.owner.login;
         this.garment.creation_date = repoDetails.created_at;
         this.garment.reference = repoDetails.id;
-        this.garment.description = repoDetails.description;
         this.garment.infos.push({
           label: 'favourites',
           value: repoDetails.watchers,
@@ -139,17 +183,12 @@
       },
       formatRepoContents(repoContents) {
         this.garment.title = repoContents.title;
+        this.garment.description = repoContents.description;
         this.garment.type = repoContents.type;
         this.garment.licence = repoContents.licence;
         this.garment.status = repoContents.status;
         this.garment.sizes = repoContents.sizes;
-        this.garment.infos.push({
-          label: 'category',
-          value: repoContents.category,
-        });
-        this.garment.infos.push({
-          label: 'sizes',
-        });
+        this.garment.category = repoContents.category;
       },
       formatRepoPullRequests(repoPullRequests) {
         this.garment.numberOfProposals = repoPullRequests.length;
@@ -165,25 +204,57 @@
           });
         }
       },
+      updateGarment() {
+        const gh = new Github({
+          token: this.state.token,
+        });
+
+        const garmentConfigOptions = {
+          title: this.garment.title,
+          description: this.garment.description,
+          type: this.garment.type,
+          category: this.garment.category,
+          sizes: this.garment.sizes,
+          licence: this.garment.licence,
+          status: 'Created',
+        };
+
+        const garmentConfig = 'garment-config.json';
+
+        console.log(this.garment.description);
+        return gh.getUser().getProfile()
+        .then((profileResponse) => {
+          const user = profileResponse.data.login;
+          const repo = this.repo;
+          const remoteRepo = gh.getRepo(user, repo);
+          return remoteRepo.writeFile('master', garmentConfig, JSON.stringify(garmentConfigOptions), 'Garment update', {})
+          .then(() => {
+            router.push({ name: 'Garment Detail', params: { user, repo } });
+          })
+          .catch(error => EventBus.$emit('showError', error.message));
+        })
+        .catch(error => EventBus.$emit('showError', error.message));
+      },
     },
     filters: {
       moment: date => moment(date).format('L'),
     },
     props: ['user', 'repo'],
     mounted() {
-      const gh = new Github({
-        token: LoginStore.state.token,
-      });
+      if (this.user === LoginStore.state.login) {
+        const gh = new Github({
+          token: LoginStore.state.token,
+        });
 
-      const remoteRepo = gh.getRepo(this.user, this.repo);
+        const remoteRepo = gh.getRepo(this.user, this.repo);
 
-      const repoDetails = remoteRepo.getDetails();
-      const repoContributorStats = remoteRepo.getContributorStats();
-      const repoContents = remoteRepo.getContents('master', 'garment-config.json', true);
-      const repoPullRequests = remoteRepo.listPullRequests();
-      const repoReleases = remoteRepo.listReleases();
+        const repoDetails = remoteRepo.getDetails();
+        const repoContributorStats = remoteRepo.getContributorStats();
+        const repoContents = remoteRepo.getContents('master', 'garment-config.json', true);
+        const repoPullRequests = remoteRepo.listPullRequests();
+        const repoReleases = remoteRepo.listReleases();
 
-      Promise.all([repoDetails, repoContributorStats, repoContents, repoPullRequests, repoReleases])
+        Promise.all([repoDetails, repoContributorStats, repoContents, repoPullRequests, repoReleases])
         .then(([rDetails, rContributors, rContents, rPullRequests, rReleases]) => {
           this.formatRepoDetails(rDetails.data);
           this.formatRepoContributorStats(rContributors.data);
@@ -194,6 +265,9 @@
           this.dataIsLoaded = true;
         })
         .catch(error => this.showError(error.message));
+      } else {
+        router.push({ name: 'Garment Detail', params: { user: this.user, repo: this.repo } });
+      }
     },
   };
 </script>

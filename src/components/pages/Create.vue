@@ -34,24 +34,27 @@ import GitHub from 'github-api';
 import EventBus from '../../eventBus';
 import sessionStore from '../../loginStore';
 import router from '../../router';
-import * as licences from '../../licences';
+import * as Licences from '../../licences';
+import * as Types from '../../types';
+import * as Sizes from '../../sizes';
+import * as Categories from '../../categories';
 
 export default {
   name: 'create',
   data() {
     return {
       name: 'Garment project title',
-      categories: ['Kid', 'Teen', 'Adult', 'Mature', 'MILF'],
-      sizes: ['XS', 'S', 'M', 'L', 'XL'],
-      types: ['T-shirt', 'Sweat', 'Pants', 'Accessories', 'Underwear'],
-      licences: licences.keys().map(),
+      categories: Categories,
+      sizes: Sizes,
+      types: Types,
+      licences: Licences,
       garment: {
         title: '',
         category: '',
         sizes: [],
         description: '',
         type: '',
-        licence: licences.CC_BY,
+        licence: Licences.CC_BY,
       },
       state: sessionStore.state,
     };
@@ -64,13 +67,13 @@ export default {
 
       const options = {
         name: this.garment.title,
-        description: this.garment.description,
+        description: '',
         homepage: 'http://example.com',
         auto_init: true,
       };
 
       const garmentConfigOptions = {
-        title: 'github-for-fashion',
+        title: this.garment.title,
         description: this.garment.description,
         type: this.garment.type,
         category: this.garment.category,

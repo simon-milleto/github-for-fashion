@@ -2,6 +2,9 @@
   <div class="garment-detail">
     <loader v-if="!dataIsLoaded"></loader>
     <div v-else="" class="garment-detail__content">
+      <router-link :to="{ name: 'Garment Edit', params: {user: user, repo: repo}}">
+        <button v-show="user === login">Edit</button>
+      </router-link>
       <h2 class="garment-detail__title">{{garment.title}}</h2>
       <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6">
@@ -109,6 +112,7 @@
           files: [],
         },
         dataIsLoaded: false,
+        login: LoginStore.state.login,
       };
     },
     methods: {
@@ -120,7 +124,6 @@
         this.garment.creator = repoDetails.owner.login;
         this.garment.creation_date = repoDetails.created_at;
         this.garment.reference = repoDetails.id;
-        this.garment.description = repoDetails.description;
         this.garment.infos.push({
           label: 'favourites',
           value: repoDetails.watchers,
@@ -137,6 +140,7 @@
         this.garment.type = repoContents.type;
         this.garment.licence = repoContents.licence;
         this.garment.status = repoContents.status;
+        this.garment.description = repoContents.description;
         this.garment.infos.push({
           label: 'category',
           value: repoContents.category,
