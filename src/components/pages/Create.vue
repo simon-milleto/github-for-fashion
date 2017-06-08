@@ -65,7 +65,6 @@ export default {
 
       const options = {
         name: this.garment.title,
-        auto_init: true,
       };
 
       const garmentConfigOptions = {
