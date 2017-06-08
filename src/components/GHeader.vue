@@ -21,12 +21,13 @@
         </section>
         <section v-else class="mdc-toolbar__section mdc-toolbar__section--align-start" id="login">
           <a @click.prevent="showLogin = true" href="#">Login</a>
+
           <div v-if="showLogin">
             <label>Paste your Token</label>
             <input type="text" v-model="logininput">
           <div v-if="loader" class="loader_login"></div>
-          <a class="link_login" href="https://github.com/settings/tokens">Where find it ?</a>
-          <p>Info: When creating it, please enable the right to access public directories.</p>
+          <a class="link_login" href="https://github.com/settings/tokens" target="_blank">Where find it ?</a>
+          <p>Info: When creating it, enable <code>public_repo</code> and <code>delete_repo</code> then paste your token.</p>
         </div>
         </section>
       </div>
@@ -145,4 +146,6 @@ export default {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
   }
+
+
 </style>
